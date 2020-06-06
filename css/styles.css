@@ -1,0 +1,103 @@
+
+    body {
+
+      font-family: "Montserrat", sans-serif;
+      /*font-weight: 400;*/
+    }
+
+    #sub {
+      width: 100%;
+      height: 5vh;
+    }
+
+    #AFmap {
+      width: 100%;
+      height: calc(70vh);
+    }
+
+    #HFmap {
+      width: 100%;
+      height: calc(80vh);
+    }
+
+    #IHDmap {
+      width: 100%;
+      height: calc(80vh);
+    }
+
+    .state {
+      fill: none;
+      stroke: #eb7f86;
+      stroke-width: 2;
+    }
+
+    .county {
+      fill: #fac484;
+      stroke: #f8a07e;
+    }
+
+    .county:hover {
+      fill: #f3e79b;
+      stroke: #eb7f86;
+      stroke-width: 2;
+    }
+
+
+    .bar-chart div {
+      font: 12px sans-serif;
+      background-color: #0979d4;
+      text-align: right;
+      padding: 5px;
+      margin: 1px;
+      color: white;
+    }
+
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    h5 {
+      letter-spacing: 4px;
+      text-align: right;
+    }
+
+    a {
+      color: #0dc295;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #eb7f86;
+      text-decoration: none;
+    }
+
+    #about {
+      max-height: calc(80vh);
+      overflow-y: scroll;
+    }
+
+    #author {
+      letter-spacing: 8px;
+    }
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {}
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      #map {
+        height: 60vh;
+      }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+
+      #map {
+        height: 80vh;
+      }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {}

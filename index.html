@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Kentucky - Chronic Heart Conditions</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome CSS from CDN -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- Google web font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel=" stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel" rel=" stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <header class="row bg-dark">
+      <div class="col-sm-9 px-3 py-3 text-white">
+        <h1>Social Determinants and Heart Disease in Kentucky</h1>
+      </div>
+    </header>
+
+    <div id="sub" class="row bg-white">
+
+    </div>
+
+
+    <ul class="nav nav-tabs mx-2">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#AF">Atrial Fibrillation</a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#HF">Heart Failure</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#IHD">Ischemic Heart Disease</a>
+      </li>
+
+    </ul>
+
+
+
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade show active" id="AF">
+        <section class="row bg-secondary">
+          <div class="col-12 col-md-7 col-lg-8 px-0">
+            <div id="AFmap" class="bg-light position-relative">
+              <!-- Rectangular control panel - <div id#cpanel></div> goes here-->
+              <!-- See this link: https://1drv.ms/u/s!Al_WACz_cvVTgqxF4czd473BB09Cww?e=eREx96  -->
+              <fieldset>
+                <!-- <legend>Custom forms</legend> -->
+                <div class="form-group">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="radioAll" name="customRadio" class="custom-control-input" checked="">
+                    <label class="custom-control-label" for="radioAll">All</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="radioRural" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="radioRural">Rural</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="radioUrban" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="radioUrban">Urban</label>
+                  </div>
+                </div>
+                
+                <div id="ui" class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All facilities
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"></div>
+                </div>
+                
+              </fieldset>
+
+            </div>
+          </div>
+          <aside id="about" class="col-12 col-md-5 col-lg-4 text-dark py-2">
+            <h5>Atrial Fibrilation</h5>
+          </aside>
+        </section>
+      </div>
+
+
+      <div class="tab-pane fade" id="HF">
+        <section class="row bg-secondary">
+          <div class="col-12 col-md-7 col-lg-8 px-0">
+            <div id="HFmap" class="bg-light position-relative"></div>
+          </div>
+          <aside id="about" class="col-12 col-md-5 col-lg-4 text-dark py-2">
+            <h5>Heart Failure</h5>
+          </aside>
+        </section>
+      </div>
+
+
+      <div class="tab-pane fade" id="IHD">
+        <section class="row bg-secondary">
+          <div class="col-12 col-md-7 col-lg-8 px-0">
+            <div id="IHDmap" class="bg-light position-relative"></div>
+          </div>
+          <aside id="about" class="col-12 col-md-5 col-lg-4 text-dark py-2">
+            <h5>Ischemic Heart Disease</h5>
+          </aside>
+        </section>
+      </div>
+
+    </div>
+
+    <footer class="row bg-dark text-white py-3">
+      <div class="col mx-2">
+        <ul class="list-unstyled">
+          <li>AUTHORED <span id="author">: <a href="https://avyma.github.io/therightvue">THE RIGHT VUE</a></span></li>
+          <li>DATE: 05 - 23 - 2020</li>
+          <li><a href="data/meta.md">META DATA</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div> <!-- end .container-fluid -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src='js/app.js'></script>
+
+
+  <!-- JQuery JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript Plugin -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+
+
+
+
+</body>
+
+</html>
