@@ -32,11 +32,9 @@
       </div>
     </header>
 
-    <div id="sub" class="row bg-white">
+    <div id="sub" class="row bg-white"></div>
 
-    </div>
-
-
+<!--Tabs: Atrial Fibrillation, Heart Failure and Ischemic Heart Disease begins-->
     <ul class="nav nav-tabs mx-2">
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#AF">Atrial Fibrillation</a>
@@ -50,45 +48,51 @@
       </li>
 
     </ul>
+    <!-- Tabs defined and drawn -->
 
 
-
+<!-- Tab contents: Maps and Map Navs begins -->
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade show active" id="AF">
         <section class="row bg-secondary">
           <div class="col-12 col-md-7 col-lg-8 px-0">
+            <!-- Atrial Fibrillation Map drawn here-->
             <div id="AFmap" class="bg-light position-relative">
-              <!-- Rectangular control panel - <div id#cpanel></div> goes here-->
-              <!-- See this link: https://1drv.ms/u/s!Al_WACz_cvVTgqxF4czd473BB09Cww?e=eREx96  -->
-              <fieldset>
-                <!-- <legend>Custom forms</legend> -->
-                <div class="form-group">
-                  <div class="custom-control custom-radio">
-                    <input type="radio" id="radioAll" name="customRadio" class="custom-control-input" checked="">
-                    <label class="custom-control-label" for="radioAll">All</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" id="radioRural" name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for="radioRural">Rural</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" id="radioUrban" name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for="radioUrban">Urban</label>
-                  </div>
+
+              <!-- Nav bar for Atrial Fibrillation-->
+              <nav class="navbar col-12 navbar-expand-lg navbar-light bg-light">
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+                  <ul class="col-6 navbar-nav justify-content-end">
+
+                    <li class="col-3 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                        class="custom-control-input">
+                      <label class="custom-control-label pt-1" for="customRadioInline1">All</label>
+                      </input>
+                    </li>
+
+                    <li class="col-3 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                        class="custom-control-input">
+                      <label class="custom-control-label pt-1" for="customRadioInline2">Rural</label>
+                    </li>
+
+                    <li class="col-3 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline3" name="customRadioInline1"
+                        class="custom-control-input">
+                      <label class="custom-control-label pt-1" for="customRadioInline3">Urban</label>
+                    </li>
+
+                  </ul>
+
                 </div>
-                
-                <div id="ui" class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    All facilities
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"></div>
-                </div>
-                
-              </fieldset>
+              </nav>
 
             </div>
           </div>
+
           <aside id="about" class="col-12 col-md-5 col-lg-4 text-dark py-2">
             <h5>Atrial Fibrilation</h5>
           </aside>
