@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Kentucky - Chronic Heart Conditions</title>
+  <title>Kentucky - Heart</title>
 
   <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
 
     <div id="sub" class="row bg-white"></div>
 
-<!--Tabs: Atrial Fibrillation, Heart Failure and Ischemic Heart Disease begins-->
+    <!--Tabs: Atrial Fibrillation, Heart Failure and Ischemic Heart Disease begins-->
     <ul class="nav nav-tabs mx-2">
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#AF">Atrial Fibrillation</a>
@@ -51,7 +51,7 @@
     <!-- Tabs defined and drawn -->
 
 
-<!-- Tab contents: Maps and Map Navs begins -->
+    <!-- Tab contents: Maps and Map Navs begins -->
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade show active" id="AF">
         <section class="row bg-secondary">
@@ -60,36 +60,49 @@
             <div id="AFmap" class="bg-light position-relative">
 
               <!-- Nav bar for Atrial Fibrillation-->
-              <nav class="navbar col-12 navbar-expand-lg navbar-light bg-light">
+              <nav class="navbar col-md-12 navbar-expand-lg navbar-light bg-light">
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                  <ul class="col-6 navbar-nav justify-content-end">
+                  <ul class="col-md-12 navbar-nav">
+                    <div class="col-md-2"></div>
 
-                    <li class="col-3 custom-control custom-radio custom-control-inline">
+                    <li class="col-md-3 nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Prevalence
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Prevalence</a>
+                        <a class="dropdown-item" href="#">Cost/Capita</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">SVI (Census Tract)</a>
+                      </div>
+                    </li>
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInline1" name="customRadioInline1"
                         class="custom-control-input">
-                      <label class="custom-control-label pt-1" for="customRadioInline1">All</label>
-                      </input>
+                      <label class="custom-control-label" for="customRadioInline1">All</label>
                     </li>
 
-                    <li class="col-3 custom-control custom-radio custom-control-inline">
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInline2" name="customRadioInline1"
                         class="custom-control-input">
-                      <label class="custom-control-label pt-1" for="customRadioInline2">Rural</label>
+                      <label class="custom-control-label" for="customRadioInline2">Rural</label>
                     </li>
 
-                    <li class="col-3 custom-control custom-radio custom-control-inline">
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInline3" name="customRadioInline1"
                         class="custom-control-input">
-                      <label class="custom-control-label pt-1" for="customRadioInline3">Urban</label>
+                      <label class="custom-control-label" for="customRadioInline3">Urban</label>
                     </li>
 
-                  </ul>
+                    <div class="col-md-4"></div>
 
+                  </ul>
                 </div>
               </nav>
-
             </div>
           </div>
 
@@ -103,8 +116,57 @@
       <div class="tab-pane fade" id="HF">
         <section class="row bg-secondary">
           <div class="col-12 col-md-7 col-lg-8 px-0">
-            <div id="HFmap" class="bg-light position-relative"></div>
+            <div id="HFmap" class="bg-light position-relative">
+
+              <!-- Nav bar for Atrial Fibrillation-->
+              <nav class="navbar col-md-12 navbar-expand-lg navbar-light bg-light">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                  <ul class="col-md-12 navbar-nav">
+                    <div class="col-md-2"></div>
+
+                    <li class="col-md-3 nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Prevalence
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Prevalence</a>
+                        <a class="dropdown-item" href="#">Cost/Capita</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">SVI (Census Tract)</a>
+                      </div>
+                    </li>
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInlineHF1" name="customRadioInlineHF1"
+                        class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInlineHF1">All</label>
+                    </li>
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInlineHF2" name="customRadioInlineHF1"
+                        class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInlineHF2">Rural</label>
+
+                    </li>
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInlineHF3" name="customRadioInlineHF1"
+                        class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInlineHF3">Urban</label>
+
+                    </li>
+
+                    <div class="col-md-4"></div>
+
+                  </ul>
+                </div>
+              </nav>
+            </div>
           </div>
+
           <aside id="about" class="col-12 col-md-5 col-lg-4 text-dark py-2">
             <h5>Heart Failure</h5>
           </aside>
@@ -115,7 +177,55 @@
       <div class="tab-pane fade" id="IHD">
         <section class="row bg-secondary">
           <div class="col-12 col-md-7 col-lg-8 px-0">
-            <div id="IHDmap" class="bg-light position-relative"></div>
+            <div id="IHDmap" class="bg-light position-relative">
+
+              <!-- Nav bar for Atrial Fibrillation-->
+              <nav class="navbar col-md-12 navbar-expand-lg navbar-light bg-light">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                  <ul class="col-md-12 navbar-nav">
+                    <div class="col-md-2"></div>
+
+                    <li class="col-md-3 nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Prevalence
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Prevalence</a>
+                        <a class="dropdown-item" href="#">Cost/Capita</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">SVI (Census Tract)</a>
+                      </div>
+                    </li>
+
+
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInlineIHD1" name="customRadioInlineIHD1"
+                        class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInlineIHD1">All</label>
+                    </li>
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInlineIHD2" name="customRadioInlineIHD1"
+                        class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInlineIHD2">Rural</label>
+                    </li>
+
+                    <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInlineIHD3" name="customRadioInlineIHD1"
+                        class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInlineIHD3">Urban</label>
+                    </li>
+
+                    <div class="col-md-4"></div>
+
+                  </ul>
+                </div>
+              </nav>
+            </div>
           </div>
           <aside id="about" class="col-12 col-md-5 col-lg-4 text-dark py-2">
             <h5>Ischemic Heart Disease</h5>
@@ -127,7 +237,7 @@
 
     <footer class="row bg-dark text-white py-3">
       <div class="col mx-2">
-        <ul class="list-unstyled">
+        <ul style="line-height: 1.7rem;" list-unstyled">
           <li>AUTHORED <span id="author">: <a href="https://avyma.github.io/therightvue">THE RIGHT VUE</a></span></li>
           <li>DATE: 05 - 23 - 2020</li>
           <li><a href="data/meta.md">META DATA</a></li>
