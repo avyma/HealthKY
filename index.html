@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <div id="sub" class="row bg-white"></div>
+    <div class="row-12 bg-black"></div>
 
     <!--Tabs: Atrial Fibrillation, Heart Failure and Ischemic Heart Disease begins-->
     <ul class="nav nav-tabs mx-2">
@@ -50,9 +50,9 @@
     </ul>
     <!-- Tabs defined and drawn -->
 
-
     <!-- Tab contents: Maps and Map Navs begins -->
     <div id="myTabContent" class="tab-content">
+      <!--Atrial Fibrillation tab pane-->
       <div class="tab-pane fade show active" id="AF">
         <section class="row bg-secondary">
           <div class="col-12 col-md-7 col-lg-8 px-0">
@@ -64,10 +64,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+                  
                   <ul class="col-md-12 navbar-nav">
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div> <!--empty div column for styling purposes-->
 
-                    <li class="col-md-3 nav-item dropdown">
+                    <li class="col-md-3 nav-item dropdown"> <!--dropdown menu: prevalence, cost/capita, SVI(Census Tracts)-->
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Prevalence
@@ -78,20 +79,25 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">SVI (Census Tract)</a>
                       </div>
-                    </li>
+                    </li> <!-- Dropdown menu finished -->
 
+                    <!-- Radio buttons begins: All, Rural and Urban -->
+
+                    <!-- All -->
                     <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInline1" name="customRadioInline1"
                         class="custom-control-input">
                       <label class="custom-control-label" for="customRadioInline1">All</label>
                     </li>
 
+                    <!-- Rural -->
                     <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInline2" name="customRadioInline1"
                         class="custom-control-input">
                       <label class="custom-control-label" for="customRadioInline2">Rural</label>
                     </li>
 
+                    <!-- Urban -->
                     <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInline3" name="customRadioInline1"
                         class="custom-control-input">
@@ -112,21 +118,22 @@
         </section>
       </div>
 
-
+      <!-- Heart Failure tab pane-->
       <div class="tab-pane fade" id="HF">
         <section class="row bg-secondary">
           <div class="col-12 col-md-7 col-lg-8 px-0">
+            <!-- Heart Failure Map drawn here-->
             <div id="HFmap" class="bg-light position-relative">
 
-              <!-- Nav bar for Atrial Fibrillation-->
+              <!-- Nav bar for Heart Failure -->
               <nav class="navbar col-md-12 navbar-expand-lg navbar-light bg-light">
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                   <ul class="col-md-12 navbar-nav">
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div> <!--empty div column for styling purposes-->
 
-                    <li class="col-md-3 nav-item dropdown">
+                    <li class="col-md-3 nav-item dropdown"> <!--dropdown menu: prevalence, cost/capita, SVI(Census Tracts)-->
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Prevalence
@@ -138,7 +145,9 @@
                         <a class="dropdown-item" href="#">SVI (Census Tract)</a>
                       </div>
                     </li>
+                    <!-- Dropdown menu finished -->
 
+                    <!-- Radio buttons begins: All, Rural and Urban -->
                     <li class="col-md-1 pt-2 custom-control custom-radio custom-control-inline">
                       <input type="radio" id="customRadioInlineHF1" name="customRadioInlineHF1"
                         class="custom-control-input">
