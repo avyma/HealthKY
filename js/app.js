@@ -128,19 +128,6 @@ $(function () {
   //
 
 
-  // Nice experiment!
-  var dataSet = [45.7, 32.8, 31.9, 31.7, 30.7, 30.6, 30.2, 30.1, 29.7, 29.4];
-
-  d3.select(".bar-chart")
-    .selectAll("div")
-    .data(dataSet)
-    .enter()
-    .append("div")
-    .style("width", function (d) {
-      return d * 5 + "px";
-    })
-    .text(function (d) {
-      return '%' + d;
-    })
+  
 
 });
