@@ -77,7 +77,7 @@ $(function () {
     // Reference D3 -------------------------------------------
     // .attr here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_attr
     const tooltip = d3.select('.container-fluid').append('div')
-      .attr('class', 'my-tooltip bg-warning text-white py-1 px-2 rounded position-absolute invisible');
+    .attr('class', 'my-tooltip bg-warning text-white py-1 px-2 rounded position-absolute invisible');
 
     // when mouse moves over the mapContainer
     // d3.event: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
@@ -89,14 +89,19 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
+//const color = d3.scaleSequentialQuantile([...data.values()], d3.interpolateBlues)
+
+
     // append a new g element
     const counties = svg.append('g')
       .selectAll('path')
       .data(countiesGeoJson.features) // use the GeoJSON features
       .join('path') // join thm to path elements
       .attr('d', path) // use our path generator to project them on the screen
+      //.attr("fill", d => color(data.get(d.id)))
       .attr('class', 'county') // give each path element a class name of county
 
+// console.log("Counties Data", countiesGeoJson);
 
     // applies event listeners to our polygons for user interaction
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
@@ -120,12 +125,8 @@ $(function () {
     // log data to console
     console.log(data);
 
+
   } // end of drawMap function
-
-
-  // US 52 state Diabetes rate source: https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Chronic-Conditions/CC_Main
-
-  //
 
 
   
