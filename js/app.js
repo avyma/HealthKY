@@ -130,13 +130,16 @@ $(function () {
       .attr('d', path) // provide the d attribute for the SVG paths
       .classed('state', true) // give each path element a class name of state
 
-    // log data to console
-    console.log(data);
+    import {
+      legend
+    } from "@d3/color-legend"
 
+    legend({
+      color: d3.scaleQuantize([1, 10], d3.schemePurples[9]),
+      title: "Atrial Fibrillation Prevalence (%)"
+    })
 
-  } // end of drawMap function
-
-
+  }
 
 
 });
