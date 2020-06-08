@@ -26,18 +26,18 @@
 
     .state {
       fill: none;
-      stroke: #eb7f86;
+      stroke: #000141;
       stroke-width: 2;
     }
 
     .county {
-      fill: #fac484;
-      stroke: #f8a07e;
+      /*fill: #fac484;*/
+      stroke: #79b5fa;
     }
 
     .county:hover {
-      fill: #f3e79b;
-      stroke: #eb7f86;
+      /*fill: #f3e79b;*/
+      stroke: #fdfcfc;
       stroke-width: 2;
     }
 

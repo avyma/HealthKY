@@ -36,8 +36,8 @@ $(function () {
   // wait until data is loaded then send to draw map function
   Promise.all([stateGeoJson, countyTopoJson]).then(drawMap);
 
-  console.log("State", stateGeoJson);
-  console.log("county", countyTopoJson);
+  //console.log("State", stateGeoJson);
+  //console.log("county", countyTopoJson);
 
   // accepts the data as a parameter countiesData (??? How did you derive at this -- countiesData ???)
   function drawMap(data) {
@@ -61,9 +61,14 @@ $(function () {
     // .geoAlbersUSA reference here: https://github.com/d3/d3-geo/blob/v1.12.0/README.md#geoAlbersUsa
     // for projections reference here: https://github.com/d3/d3/blob/master/API.md#projections
     const projection = d3.geoAlbers()
+
+      //.fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
       .rotate([90, 0])
-      .center([10000,0])
-      .fitSize([width / 1.15, height / 1.15], stateData); // update data to stateData
+      .center([30, 0])
+      //.translate([width / 1.25, height / 1.25])
+      .fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
+
+
 
     // declared path generator using the projection
     // .geoPath Reference: https://github.com/d3/d3-geo#paths
@@ -77,7 +82,7 @@ $(function () {
     // Reference D3 -------------------------------------------
     // .attr here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_attr
     const tooltip = d3.select('.container-fluid').append('div')
-    .attr('class', 'my-tooltip bg-warning text-white py-1 px-2 rounded position-absolute invisible');
+      .attr('class', 'my-tooltip bg-warning text-white py-1 px-2 rounded position-absolute invisible');
 
     // when mouse moves over the mapContainer
     // d3.event: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
@@ -89,7 +94,7 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
-//const color = d3.scaleSequentialQuantile([...data.values()], d3.interpolateBlues)
+    const color = d3.scaleQuantize([0, 10], d3.schemeBlues[9])
 
 
     // append a new g element
@@ -98,10 +103,13 @@ $(function () {
       .data(countiesGeoJson.features) // use the GeoJSON features
       .join('path') // join thm to path elements
       .attr('d', path) // use our path generator to project them on the screen
-      //.attr("fill", d => color(data.get(d.id)))
+      .attr('class', 'county') // give each path element a class name of county
+      .attr("fill", d => {
+        return color(d.properties.AF_PREV);
+      })
       .attr('class', 'county') // give each path element a class name of county
 
-// console.log("Counties Data", countiesGeoJson);
+    console.log("countiesGeoJson", countiesGeoJson);
 
     // applies event listeners to our polygons for user interaction
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
@@ -129,6 +137,6 @@ $(function () {
   } // end of drawMap function
 
 
-  
+
 
 });
