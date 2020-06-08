@@ -1,9 +1,13 @@
-(function () {
+// JQuery to call object
+//$();
+//jQuery();
+//$(document).ready();
+// $(function () {} 
+
+$(function () {
 
   // select the HTML element that will hold our map
   const mapContainer = d3.select('#AFmap')
-
-  console.log("Hello World");
 
   // determine width and height of map from container
   //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
@@ -14,25 +18,26 @@
   // create and append a new SVG element to the map div
   const svg = mapContainer
     .append('svg')
-    .attr('width', width) // provide width and height attributes)
+    .attr('width', width) // provide width and height attributes
     .attr('height', height)
     .classed('position-absolute', true) //add bootstrap class
-    .style('top', 40 + "px") //40 pixels from the top
+    .style('top', 30 + "px") //40 pixels from the top
     .style('left', 30 + "px"); // 30 pixels from the left
 
   // request the JSON text file, then call drawMap function
   //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
   // request our data files and reference with variables
-  const stateGeoJson = d3.json('KY-HEART/data/KY_state.geojson');
-  const countyTopoJson = d3.json('KY-HEART/data/svi_hd_ky.json');
+  const stateGeoJson = d3.json('data/ky_state.geojson');
+  const countyTopoJson = d3.json('data/svi_hd_ky.json');
 
-  console.log(stateGeoJson);
+  //console.log("State",stateGeoJson);
 
   // wait until data is loaded then send to draw map function
   Promise.all([stateGeoJson, countyTopoJson]).then(drawMap);
 
-
+  console.log("State", stateGeoJson);
+  console.log("county", countyTopoJson);
 
   // accepts the data as a parameter countiesData (??? How did you derive at this -- countiesData ???)
   function drawMap(data) {
@@ -43,20 +48,22 @@
     const stateData = data[0];
     const countiesData = data[1];
 
-    console.log(countiesData);
+    //console.log(countiesData);
 
     //convert the TopoJSON into GeoJSON
     const countiesGeoJson = topojson.feature(countiesData, {
       type: 'GeometryCollection',
-      geometries: countiesData.objects.counties.geometries
+      geometries: countiesData.objects.SVI_HD_KY.geometries
     });
 
     // declare a geographic path generator
     // fit the extent to the width and height using the geojson
     // .geoAlbersUSA reference here: https://github.com/d3/d3-geo/blob/v1.12.0/README.md#geoAlbersUsa
     // for projections reference here: https://github.com/d3/d3/blob/master/API.md#projections
-    const projection = d3.geoAlbersUsa()
-      .fitSize([width, height], stateData); // update data to stateData
+    const projection = d3.geoAlbers()
+      .rotate([90, 0])
+      .center([10000,0])
+      .fitSize([width / 1.15, height / 1.15], stateData); // update data to stateData
 
     // declared path generator using the projection
     // .geoPath Reference: https://github.com/d3/d3-geo#paths
