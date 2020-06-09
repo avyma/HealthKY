@@ -99,7 +99,10 @@ $(function () {
 
     svg.append("g")
       .attr("transform", "translate(610,20)")
-      .append(() => legend({color, width: 260}));
+      .append(() => legend({
+        color,
+        width: 260
+      }));
 
     // append a new g element
     const counties = svg.append('g')
@@ -132,9 +135,9 @@ $(function () {
       .data(stateData.features) // use the feature data from the geojson...update to stateData
       .join('path') // join the data to the now created path elements
       .attr('d', path) // provide the d attribute for the SVG paths
-      .classed('state', true) // give each path element a class name of state
+      .classed('state', true); // give each path element a class name of state
 
-    legend();
+
 
   }
 
