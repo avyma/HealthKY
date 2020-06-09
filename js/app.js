@@ -48,7 +48,7 @@ $(function () {
     const stateData = data[0];
     const countiesData = data[1];
 
-    //console.log(countiesData);
+    console.log(countiesData);
 
     //convert the TopoJSON into GeoJSON
     const countiesGeoJson = topojson.feature(countiesData, {
