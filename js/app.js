@@ -62,13 +62,11 @@ $(function () {
     // for projections reference here: https://github.com/d3/d3/blob/master/API.md#projections
     const projection = d3.geoAlbers()
 
-      //.fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
-      .rotate([90, 0])
-      .center([30, 0])
-      //.translate([width / 1.25, height / 1.25])
-      .fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
 
 
+    //.fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
+    .rotate([88, 0])
+    .fitSize([width/1.15, height/1.15], countiesGeoJson) // update data to stateData
 
     // declared path generator using the projection
     // .geoPath Reference: https://github.com/d3/d3-geo#paths
@@ -94,14 +92,14 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
-    const color = d3.scaleQuantize([0, 10], d3.schemeBlues[9])
+    const color = d3.scaleQuantize([5, 11], d3.schemeBlues[6])
 
 
     svg.append("g")
       .attr("transform", "translate(610,20)")
       .append(() => legend({
         color,
-        width: 260
+        width: 300
       }));
 
     // append a new g element
@@ -121,7 +119,7 @@ $(function () {
     // applies event listeners to our polygons for user interaction
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
         d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
-        tooltip.classed('invisible', false).html(`${d.properties.NAME} County`) //make tooltip visible and update information
+        tooltip.classed('invisible', false).html(`<p>${d.properties.NAME} County</p>Prevalence: ${d.properties.AF_PREV}`) //make tooltip visible and update information
       })
 
       .on('mouseout', (d, i, nodes) => { // when mousing out of an element
@@ -130,13 +128,15 @@ $(function () {
       });
 
     // append state to the SVG
+
     svg.append('g') // append a group element to the svg
       .selectAll('path') // select multiple paths (that don't exist yet)
       .data(stateData.features) // use the feature data from the geojson...update to stateData
       .join('path') // join the data to the now created path elements
       .attr('d', path) // provide the d attribute for the SVG paths
-      .classed('state', true); // give each path element a class name of state
+      .classed('state', true) // give each path element a class name of state
 
+      //.fitSize([width, height], stateData) // update data to stateData
 
 
   }
