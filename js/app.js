@@ -28,8 +28,8 @@ $(function () {
   //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
   // request our data files and reference with variables
-  const stateGeoJson = d3.json('../data/ky_state.geojson');
-  const countyTopoJson = d3.json('../data/svi_hd_ky.json');
+  const stateGeoJson = d3.json('data/ky_state.geojson')
+  countyTopoJson = d3.json('data/svi_hd_ky.json');
 
   //console.log("State",stateGeoJson);
 
