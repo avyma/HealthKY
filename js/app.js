@@ -97,6 +97,10 @@ $(function () {
     const color = d3.scaleQuantize([0, 10], d3.schemeBlues[9])
 
 
+    svg.append("g")
+      .attr("transform", "translate(610,20)")
+      .append(() => legend({color, width: 260}));
+
     // append a new g element
     const counties = svg.append('g')
       .selectAll('path')
@@ -130,14 +134,7 @@ $(function () {
       .attr('d', path) // provide the d attribute for the SVG paths
       .classed('state', true) // give each path element a class name of state
 
-    import {
-      legend
-    } from "@d3/color-legend"
-
-    legend({
-      color: d3.scaleQuantize([1, 10], d3.schemePurples[9]),
-      title: "Atrial Fibrillation Prevalence (%)"
-    })
+    legend();
 
   }
 
