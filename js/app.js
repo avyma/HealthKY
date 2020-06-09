@@ -6,6 +6,20 @@
 
 $(function () {
 
+
+
+  // request our data files and reference with variables
+  const stateGeoJson = d3.json('data/ky.geojson');
+  const countyTopoJson = d3.json('data/svihd.json');
+
+  //console.log("State",stateGeoJson);
+
+  // wait until data is loaded then send to draw map function
+  Promise.all([stateGeoJson, countyTopoJson]).then(getData);
+
+  //console.log("State", stateGeoJson);
+  //console.log("county", countyTopoJson);
+
   // select the HTML element that will hold our map
   const mapContainer = d3.select('#AFmap')
 
@@ -24,25 +38,32 @@ $(function () {
     .style('top', 30 + "px") //40 pixels from the top
     .style('left', 30 + "px"); // 30 pixels from the left
 
-  // request the JSON text file, then call drawMap function
-  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
-
-  // request our data files and reference with variables
-  const stateGeoJson = d3.json('data/ky.geojson');
-  const countyTopoJson = d3.json('data/svihd.json');
-
-  //console.log("State",stateGeoJson);
-
-  // wait until data is loaded then send to draw map function
-  Promise.all([stateGeoJson, countyTopoJson]).then(drawMap);
-
-  //console.log("State", stateGeoJson);
-  //console.log("county", countyTopoJson);
+    // request the JSON text file, then call drawMap function
+    //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
   // accepts the data as a parameter countiesData (??? How did you derive at this -- countiesData ???)
-  function drawMap(data) {
+  function getData(data) {
 
     //console.log(data);
+
+
+    d3.select("#AF_PREV").on('click', () => {
+      drawMap('AF_PREV', data)
+
+    });
+
+    d3.select("#HF_PREV").on('click', () => {
+      drawMap('HF_PREV', data)
+    });
+
+    drawMap('AF_PREV', data)
+
+  }
+
+  function drawMap(healthVar, data) {
+
+
+    svg.selectAll('*').remove()
 
     // refer to different datasets
     const stateData = data[0];
@@ -63,12 +84,10 @@ $(function () {
     const projection = d3.geoAlbers()
 
       //.fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
-      .rotate([90, 0])
+      .rotate([87, 0])
       .center([30, 0])
       //.translate([width / 1.25, height / 1.25])
-      .fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
-
-
+      .fitSize([width, height], stateData) // update data to stateData
 
     // declared path generator using the projection
     // .geoPath Reference: https://github.com/d3/d3-geo#paths
@@ -94,14 +113,26 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
-    const color = d3.scaleQuantize([0, 10], d3.schemeBlues[9])
+    const myArray = []
+    for (let x of countiesGeoJson.features) {
+      myArray.push(+x.properties[healthVar])
+    }
+
+    const max = Math.max(...myArray)
+    const min = Math.min(...myArray)
+
+    console.log(myArray, min, max)
+    const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
 
 
     svg.append("g")
-      .attr("transform", "translate(610,20)")
+      .attr("transform", "translate(0,50)")
       .append(() => legend({
         color,
-        width: 260
+        width: 260,
+        title: "Age (years)",
+        tickSize: 1,
+        tickFormat: ".1f"
       }));
 
     // append a new g element
@@ -112,7 +143,7 @@ $(function () {
       .attr('d', path) // use our path generator to project them on the screen
       .attr('class', 'county') // give each path element a class name of county
       .attr("fill", d => {
-        return color(d.properties.AF_PREV);
+        return color(d.properties[healthVar]);
       })
       .attr('class', 'county') // give each path element a class name of county
 
@@ -136,8 +167,6 @@ $(function () {
       .join('path') // join the data to the now created path elements
       .attr('d', path) // provide the d attribute for the SVG paths
       .classed('state', true); // give each path element a class name of state
-
-
 
   }
 
