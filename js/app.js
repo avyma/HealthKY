@@ -6,11 +6,9 @@
 
 $(function () {
 
-
-
   // request our data files and reference with variables
   const stateGeoJson = d3.json('data/ky.geojson');
-  const countyTopoJson = d3.json('data/svihd.json');
+  const countyTopoJson = d3.json('data/chronic_cond.json');
 
   //console.log("State",stateGeoJson);
 
@@ -38,43 +36,47 @@ $(function () {
     .style('top', 30 + "px") //40 pixels from the top
     .style('left', 30 + "px"); // 30 pixels from the left
 
-    // request the JSON text file, then call drawMap function
-    //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
+  // request the JSON text file, then call drawMap function
+  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
-  // accepts the data as a parameter countiesData (??? How did you derive at this -- countiesData ???)
+
   function getData(data) {
 
     //console.log(data);
 
 
     d3.select("#AF_PREV").on('click', () => {
-      drawMap('AF_PREV', data)
+      drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
 
     });
 
     d3.select("#HF_PREV").on('click', () => {
-      drawMap('HF_PREV', data)
+      drawMap('HF_Prev_2017', 'Heart Failure', data)
     });
 
-    drawMap('AF_PREV', data)
+    d3.select("#IHD_PREV").on('click', () => {
+      drawMap('IHD_Prev_2017', 'Ischemic Heart Disease', data)
+    });
+
+    drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
 
   }
 
-  function drawMap(healthVar, data) {
+  function drawMap(healthVar, chronName, data) {
 
-
-    svg.selectAll('*').remove()
+    svg.selectAll('*').remove() // remove all previous data
 
     // refer to different datasets
     const stateData = data[0];
     const countiesData = data[1];
 
-    console.log(countiesData);
+    //console.log(countiesData);
 
     //convert the TopoJSON into GeoJSON
+    // Kentucky counties mapped
     const countiesGeoJson = topojson.feature(countiesData, {
       type: 'GeometryCollection',
-      geometries: countiesData.objects.SVI_HD_KY.geometries
+      geometries: countiesData.objects.chronic_cond.geometries
     });
 
     // declare a geographic path generator
@@ -84,11 +86,10 @@ $(function () {
     const projection = d3.geoAlbers()
 
 
-      //.fitSize([width / 1.25, height / 1.25], stateData) // update data to stateData
       .rotate([87, 0])
       .center([30, 0])
       //.translate([width / 1.25, height / 1.25])
-      .fitSize([width, height], stateData) // update data to stateData
+      .fitSize([width / 1.15, height / 1.15], stateData) // update data to stateData
 
 
     // declared path generator using the projection
@@ -122,19 +123,20 @@ $(function () {
       myArray.push(+x.properties[healthVar])
     }
 
+    const title = chronName;
     const max = Math.max(...myArray)
     const min = Math.min(...myArray)
 
-    console.log(myArray, min, max)
+    console.log(myArray, min, max);
     const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
 
 
     svg.append("g")
-      .attr("transform", "translate(0,50)")
+      .attr("transform", "translate(980,625)")
       .append(() => legend({
         color,
-        width: 260,
-        title: "Age (years)",
+        width: 320,
+        title: `${title} Prevalence (%)`,
         tickSize: 1,
         tickFormat: ".1f"
       }));
@@ -156,23 +158,13 @@ $(function () {
     // applies event listeners to our polygons for user interaction
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
         d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
-        tooltip.classed('invisible', false).html(`<p>${d.properties.NAME} County</p>Prevalence: ${d.properties.AF_PREV}`) //make tooltip visible and update information
+        tooltip.classed('invisible', false).html(`<p>${d.properties.County} County</p>Prevalence: ${d.properties[healthVar]}%`) //make tooltip visible and update information
       })
 
       .on('mouseout', (d, i, nodes) => { // when mousing out of an element
         d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
         tooltip.classed('invisible', true) // hide the element
       });
-
-      
-      // create g element to append legend to map
-      svg.append("g")
-      .attr("transform", "translate(850,625)")
-      .append(() => legend({
-        color,
-        width: 275
-      }));
-
 
     // append state to the SVG
     svg.append('g') // append a group element to the svg
@@ -184,6 +176,4 @@ $(function () {
       .classed('state', true); // give each path element a class name of state
 
   }
-
-
 });
