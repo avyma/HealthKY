@@ -24,8 +24,8 @@ $(function () {
         console.log(error)
       });
   });
+*/
 
-  */
 
 
   // wait until data is loaded then send to getData function
@@ -61,10 +61,10 @@ $(function () {
 
     //console.log("data", data);
 
-    drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
+    drawMap('AutSpect_Prev_2017', 'Autism', data)
 
     d3.select("#AF_PREV").on('click', () => {
-      drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
+      drawMap('AutSpect_Prev_2017', 'Autism', data)
 
     });
 
@@ -162,17 +162,18 @@ $(function () {
     // **************** TEST FILTERING OF "*" *****************************************
 
     // filter for non "*" data
-    const ValueData = svg.append('g')
-      .selectAll('path')
-      .data(countiesGeoJson)
-      .filter(function (d) {
-        return d.value = !"*";
-      });
+    // const ValueData = svg.append('h')
 
-    console.log("ValueData",ValueData);
+    //   .data(countiesGeoJson)
+    //   .filter(function (d) {
+    //     return d.value != "*";
+    //   })
+    //   .selectAll('path')
+
+    // console.log("ValueData", ValueData);
 
 
-
+    // ***************************************************************************
 
 
     // append a new g element
@@ -183,7 +184,12 @@ $(function () {
       .attr('d', path) // use our path generator to project them on the screen
       .attr('class', 'county') // give each path element a class name of county
       .attr("fill", d => {
-        return color(d.properties[healthVar]);
+        let value = d.properties[healthVar];
+        if (value.trim() === "*"){
+          return "url(#vertical-stripe-3)";
+        } else {
+          return color(value);
+        }
       })
       .attr('class', 'county') // give each path element a class name of county
 
