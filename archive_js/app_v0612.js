@@ -145,10 +145,10 @@ $(function () {
     const max = Math.max(...myArray)
     const min = Math.min(...myArray)
 
-    console.log(myArray, min, max);
+    //console.log(myArray, min, max);
     const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
 
-
+/*
     svg.append("g")
       .attr("transform", "translate(500,600)")
       .append(() => legend({
@@ -158,23 +158,7 @@ $(function () {
         tickSize: 1,
         tickFormat: ".1f"
       }));
-
-    // **************** TEST FILTERING OF "*" *****************************************
-
-    // filter for non "*" data
-    const nonValueData = svg.append('g')
-      .selectAll('path')
-      .data(countiesGeoJson)
-      .filter(function (d) {
-        return d.value = !"*";
-      });
-
-    console.log("nonValueData",nonValueData);
-
-
-
-
-
+*/
     // append a new g element
     const counties = svg.append('g')
       .selectAll('path')
@@ -187,7 +171,7 @@ $(function () {
       })
       .attr('class', 'county') // give each path element a class name of county
 
-    // console.log("countiesGeoJson", countiesGeoJson);
+    console.log("countiesGeoJson", countiesGeoJson);
 
     // applies event listeners to our polygons for user interaction
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
@@ -209,5 +193,25 @@ $(function () {
 
       .classed('state', true); // give each path element a class name of state
 
+drawLegend(healthVar, chronName, countiesGeoJson, color, title, max, min);
+
+
   }
+
+  function drawLegend(healthVar, chronName, color, title){
+
+   
+
+    svg.append("g")
+      .attr("transform", "translate(500,600)")
+      .append(() => legend({
+        color,
+        width: 320,
+        title: `${title} Prevalence (%)`,
+        tickSize: 1,
+        tickFormat: ".1f"
+      }));
+
+
+  };
 });
