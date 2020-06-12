@@ -162,14 +162,14 @@ $(function () {
     // **************** TEST FILTERING OF "*" *****************************************
 
     // filter for non "*" data
-    const nonValueData = svg.append('g')
+    const ValueData = svg.append('g')
       .selectAll('path')
       .data(countiesGeoJson)
       .filter(function (d) {
         return d.value = !"*";
       });
 
-    console.log("nonValueData",nonValueData);
+    console.log("ValueData",ValueData);
 
 
 
