@@ -186,7 +186,7 @@ $(function () {
       .attr("fill", d => {
         let value = d.properties[healthVar];
         if (value.trim() === "*"){
-          return "url(#vertical-stripe-3)";
+          return "url(#vertical-stripe)";
         } else {
           return color(value);
         }
