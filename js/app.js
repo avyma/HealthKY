@@ -36,7 +36,7 @@ $(function () {
   //console.log("county", countyTopoJson);
 
   // select the HTML element that will hold our map
-  const mapContainer = d3.select('#AFmap')
+  const mapContainer = d3.select('#ABmap')
 
   // determine width and height of map from container
   //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
@@ -61,19 +61,98 @@ $(function () {
 
     //console.log("data", data);
 
-    drawMap('AutSpect_Prev_2017', 'Autism', data)
+    drawMap('Alc_Prev_2017', 'Alcohol Abuse', data)
+
+    d3.select("#AB_PREV").on('click', () => {
+      drawMap('Alc_Prev_2017', 'Alcohol Abuse', data)
+
+    });
+
+    d3.select("#ALZ_PREV").on('click', () => {
+      drawMap('AlzDem_Prev_2017', 'Alzheimer/Dementia', data)
+    });
+
+    d3.select("#ART_PREV").on('click', () => {
+      drawMap('Arth_Prev_2017', 'Arthritis', data)
+    });
+
+    d3.select("#AST_PREV").on('click', () => {
+      drawMap('Asth_Prev_2017', 'Asthma', data)
+
+    });
 
     d3.select("#AF_PREV").on('click', () => {
-      drawMap('AutSpect_Prev_2017', 'Autism', data)
+      drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
+    });
 
+    d3.select("#AUT_PREV").on('click', () => {
+      drawMap('AutSpect_Prev_2017', 'Autism Spectrum', data)
+    });
+
+    d3.select("#CAN_PREV").on('click', () => {
+      drawMap('Cancer_Prev_2017', 'Cancer', data)
+
+    });
+
+    d3.select("#CHRONKID_PREV").on('click', () => {
+      drawMap('ChronKidn_Prev_2017', 'Chronic Kidney Disease', data)
+    });
+
+    d3.select("#COPD_PREV").on('click', () => {
+      drawMap('COPD_Prev_2017', 'COPD', data)
+    });
+
+    d3.select("#DEPR_PREV").on('click', () => {
+      drawMap('Deprs_Prev_2017', 'Depression', data)
+
+    });
+
+    d3.select("#DIA_PREV").on('click', () => {
+      drawMap('Diab_Prev_2017', 'Diabetes', data)
+    });
+
+    d3.select("#DRG_PREV").on('click', () => {
+      drawMap('DrgAb_Prev_2017', 'Drug/Substance Abuse', data)
+    });
+
+    d3.select("#HIV_PREV").on('click', () => {
+      drawMap('HIVAIDS_Prev_2017', 'HIV/AIDS', data)
     });
 
     d3.select("#HF_PREV").on('click', () => {
       drawMap('HF_Prev_2017', 'Heart Failure', data)
     });
 
+    d3.select("#HEP_PREV").on('click', () => {
+      drawMap('HepBC_Prev_2017', 'Hepatitis (B&C)', data)
+    });
+
+    d3.select("#HLIP_PREV").on('click', () => {
+      drawMap('HpLip_Prev_2017', 'Hyperlipidemia', data)
+    });
+
+    d3.select("#HTN_PREV").on('click', () => {
+      drawMap('HpTen_Prev_2017', 'Hypertension', data)
+
+    });
+
     d3.select("#IHD_PREV").on('click', () => {
       drawMap('IHD_Prev_2017', 'Ischemic Heart Disease', data)
+    });
+
+    d3.select("#OSTEO_PREV").on('click', () => {
+      drawMap('Osteo_Prev_2017', 'Osteoporosis', data)
+    });
+
+
+
+    d3.select("#SCHIZ_PREV").on('click', () => {
+      drawMap('SchizPsych_Prev_2017', 'Schizophrenia/Psychotic', data)
+
+    });
+
+    d3.select("#STRK_PREV").on('click', () => {
+      drawMap('Stroke_Prev_2017', 'Stroke', data)
     });
 
     // drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
@@ -135,17 +214,20 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
+// Use of map function, reference here: 
+    const myArray = countiesGeoJson.features.map(item => item.properties[healthVar])
+      .filter(item => item.trim() !== "*")
 
-    const myArray = []
-    for (let x of countiesGeoJson.features) {
-      myArray.push(+x.properties[healthVar])
-    }
+    // for (let x of countiesGeoJson.features) {
+    //   myArray.push(+x.properties[healthVar])
+    // };
 
     const title = chronName;
     const max = Math.max(...myArray)
     const min = Math.min(...myArray)
 
-    console.log(myArray, min, max);
+    console.log('max', max);
+
     const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
 
 
@@ -159,23 +241,6 @@ $(function () {
         tickFormat: ".1f"
       }));
 
-    // **************** TEST FILTERING OF "*" *****************************************
-
-    // filter for non "*" data
-    // const ValueData = svg.append('h')
-
-    //   .data(countiesGeoJson)
-    //   .filter(function (d) {
-    //     return d.value != "*";
-    //   })
-    //   .selectAll('path')
-
-    // console.log("ValueData", ValueData);
-
-
-    // ***************************************************************************
-
-
     // append a new g element
     const counties = svg.append('g')
       .selectAll('path')
@@ -185,7 +250,7 @@ $(function () {
       .attr('class', 'county') // give each path element a class name of county
       .attr("fill", d => {
         let value = d.properties[healthVar];
-        if (value.trim() === "*"){
+        if (value.trim() === "*") {
           return "url(#diagonal-stripe-1)";
         } else {
           return color(value);
