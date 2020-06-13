@@ -229,6 +229,7 @@ $(function () {
     console.log('max', max);
 
     const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
+    const undefColor = "url(#diagonal-stripe-1)"
 
 
     svg.append("g")
@@ -241,6 +242,12 @@ $(function () {
         tickFormat: ".1f"
       }));
 
+    //  const undefRect = svg.append("g")
+    //  .selectAll('rect')
+     
+
+
+
     // append a new g element
     const counties = svg.append('g')
       .selectAll('path')
@@ -251,7 +258,7 @@ $(function () {
       .attr("fill", d => {
         let value = d.properties[healthVar];
         if (value.trim() === "*") {
-          return "url(#diagonal-stripe-1)";
+          return undefColor;
         } else {
           return color(value);
         }
@@ -264,11 +271,17 @@ $(function () {
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
         d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
         tooltip.classed('invisible', false).html(`<p>${d.properties.County} County</p>Prevalence: ${d.properties[healthVar]}%`) //make tooltip visible and update information
+        let info = $("#county_info");
+        info.html(`<p>${d.properties.County} County</p>Prevalence: ${d.properties[healthVar]}%`);
+        info.show();      
+      
       })
 
       .on('mouseout', (d, i, nodes) => { // when mousing out of an element
         d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
         tooltip.classed('invisible', true) // hide the element
+        info = $("#county_info");
+        info.hide();
       });
 
     // append state to the SVG
@@ -282,3 +295,69 @@ $(function () {
 
   }
 });
+
+/**
+ * Tab scrolling
+ */
+var hidWidth;
+var scrollBarWidths = 40;
+
+var widthOfList = function(){
+  var itemsWidth = 0;
+  $('.list li').each(function(){
+    var itemWidth = $(this).outerWidth();
+    itemsWidth+=itemWidth;
+  });
+  return itemsWidth;
+};
+
+var widthOfHidden = function(){
+  return (($('.wrapper').outerWidth())-widthOfList()-getLeftPosi())-scrollBarWidths;
+};
+
+var getLeftPosi = function(){
+  return $('.list').position().left;
+};
+
+var reAdjust = function(){
+  if (($('.wrapper').outerWidth()) < widthOfList()) {
+    $('.scroller-right').show();
+  }
+  else {
+    $('.scroller-right').hide();
+  }
+  
+  if (getLeftPosi()<0) {
+    $('.scroller-left').show();
+  }
+  else {
+    $('.item').animate({left:"-="+getLeftPosi()+"px"},'slow');
+  	$('.scroller-left').hide();
+  }
+}
+
+reAdjust();
+
+$(window).on('resize',function(e){  
+  	reAdjust();
+});
+
+$('.scroller-right').click(function() {
+  
+  $('.scroller-left').fadeIn('slow');
+  $('.scroller-right').fadeOut('slow');
+  
+  $('.list').animate({left:"+="+widthOfHidden()+"px"},'slow',function(){
+
+  });
+});
+
+$('.scroller-left').click(function() {
+  
+	$('.scroller-right').fadeIn('slow');
+	$('.scroller-left').fadeOut('slow');
+  
+  	$('.list').animate({left:"-="+getLeftPosi()+"px"},'slow',function(){
+  	
+  	});
+});    
