@@ -11,7 +11,8 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome CSS from CDN -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Google web font -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -28,7 +29,9 @@
     <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
             <pattern id="diagonal-stripe-1" patternUnits="userSpaceOnUse" width="10" height="10">
-                <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScvPgogIDxwYXRoIGQ9J00tMSwxIGwyLC0yCiAgICAgICAgICAgTTAsMTAgbDEwLC0xMAogICAgICAgICAgIE05LDExIGwyLC0yJyBzdHJva2U9J2JsYWNrJyBzdHJva2Utd2lkdGg9JzEnLz4KPC9zdmc+Cg==" x="0" y="0" width="10" height="10"> </image>
+                <image
+                    xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScvPgogIDxwYXRoIGQ9J00tMSwxIGwyLC0yCiAgICAgICAgICAgTTAsMTAgbDEwLC0xMAogICAgICAgICAgIE05LDExIGwyLC0yJyBzdHJva2U9J2JsYWNrJyBzdHJva2Utd2lkdGg9JzEnLz4KPC9zdmc+Cg=="
+                    x="0" y="0" width="10" height="10"> </image>
             </pattern>
         </defs>
     </svg>
@@ -44,7 +47,8 @@
 
         <!--Dropdown items: All chronic conditions begins-->
         <div class="nav nav-item dropdown">
-            <a class="nav-link nav-item dropdown-toggle text-success" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link nav-item dropdown-toggle text-success" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown button
             </a>
             <!-- 
@@ -77,6 +81,17 @@
                 <a class="dropdown-item" href="#AB" id="HTN_PREV">Hypertension</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#AB" id="IHD_PREV">Ischemic Heart Disease</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#AB" id="OSTEO_PREV">Osteoporosis</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#AB" id="SCHIZ_PREV">Schizophrenia/Psychotic Disorder</a>
+                <a class="dropdown-item" href="#AB" id="STRK_PREV">Stroke</a>
+
+
+
+
+
+
             </div>
 
         </div>
@@ -97,9 +112,61 @@
                     </div>
                 </div>
 
-                <aside id="about" class="col-12 col-md-4 col-lg-3 text-dark py-2">
-                    <div id="county_info"></div>
+                <aside id="about" class="col-12 col-md-4 col-lg-3">
 
+                    <div class="container">
+
+                        <div class="data-title row text-white px-sm-1 py-sm-3">
+                            <h3 id="chron_name"></h3>
+                        </div>
+
+                        <div class="row">
+                            <div class="card bg-dark px-3 py-1" style="height: 12rem">
+                                <div class="card-header pt-1 px-2">PREVALENCE (%)</div>
+                                <div class="dataBox row">
+
+                                    <div class="col-lg-4 col-sm-6 py-sm-3">
+                                        <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                            <!-- <div class="card-header">Header</div> -->
+                                            <div class="card-body my-sm-auto mx-sm-auto">
+                                                <h1 class="card-title display-5" id="prev_info"></h1>
+                                                <!-- <p class="card-text"></p> -->
+                                            </div>
+                                            <div class="card-footer" style="height: 2rem;">
+                                                <h6 style="font-size: small;" id="county_label"></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-sm-6 py-sm-3">
+                                        <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                            <!-- <div class="card-header">Header</div> -->
+                                            <div class="card-body my-sm-auto mx-sm-auto">
+                                                <h1 class="card-title display-5" id="ky_avg"></h1>
+                                                <!-- <p class="card-text"></p> -->
+                                            </div>
+                                            <div class="card-footer" style="height: 2rem;">
+                                                <h6 style="font-size: small;" id="ky_label"></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-sm-6 py-sm-3">
+                                        <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                            <!-- <div class="card-header">Header</div> -->
+                                            <div class="card-body my-sm-auto mx-sm-auto">
+                                                <h1 class="card-title display-5" id="us_avg"></h1>
+                                                <!-- <p class="card-text"></p> -->
+                                            </div>
+                                            <div class="card-footer" style="height: 2rem;">
+                                                <h6 style="font-size: small;" id="us_label"></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </aside>
             </section>
         </div>
@@ -110,7 +177,8 @@
     <footer class="row bg-dark text-white py-3">
         <div class="col mx-2">
             <ul style="line-height: 1.7rem;" list-unstyled">
-                <li>AUTHORED <span id="author">: <a href="https://avyma.github.io/therightvue">THE RIGHT VUE</a></span>
+                <li>AUTHORED <span id="author">: <a href="https://avyma.github.io/therightvue">THE RIGHT
+                            VUE</a></span>
                 </li>
                 <li>DATE: 06 - 15 - 2020</li>
                 <li><a href="data/meta.md">META DATA</a></li>
@@ -130,11 +198,14 @@
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <!-- JavaScript Plugin -->
     <script src="https://d3js.org/d3.v5.js"></script>
