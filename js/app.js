@@ -163,10 +163,25 @@ $(function () {
 
     svg.selectAll('*').remove() // remove all previous data
 
+
+    //JQuery to display chronic condition name on the dropdown HTML
     $('#dropdownMenuButton').html(chronName);
+
     // refer to different datasets
     const stateData = data[0];
     const countiesData = data[1];
+
+    // manage prefix and new suffix of healthVar to create properties key per chron conditions
+    const chron_2010 = `${healthVar.slice(0,-4)}2010`;
+    const chron_2011 = `${healthVar.slice(0,-4)}2011`;
+    const chron_2012 = `${healthVar.slice(0,-4)}2012`;
+    const chron_2013 = `${healthVar.slice(0,-4)}2013`;
+    const chron_2014 = `${healthVar.slice(0,-4)}2014`;
+    const chron_2015 = `${healthVar.slice(0,-4)}2015`;
+    const chron_2016 = `${healthVar.slice(0,-4)}2016`;
+    const chron_2017 = `${healthVar.slice(0,-4)}2017`;
+    const chron_KY_2017 = `${healthVar.slice(0,-4)}KY_2017`;
+    const chron_US_2017 = `${healthVar.slice(0,-4)}US_2017`;
 
     //console.log(countiesData);
 
@@ -176,6 +191,8 @@ $(function () {
       type: 'GeometryCollection',
       geometries: countiesData.objects.chronic_cond.geometries
     });
+
+    console.log(countiesGeoJson);
 
     // declare a geographic path generator
     // fit the extent to the width and height using the geojson
@@ -215,7 +232,7 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
-// Use of map function, reference here: 
+    // Use of map function, reference here: 
     const myArray = countiesGeoJson.features.map(item => item.properties[healthVar])
       .filter(item => item.trim() !== "*")
 
@@ -223,11 +240,13 @@ $(function () {
     //   myArray.push(+x.properties[healthVar])
     // };
 
+    //console.log('myArray', myArray);
+
     const title = chronName;
     const max = Math.max(...myArray)
     const min = Math.min(...myArray)
 
-    console.log('max', max);
+    //console.log('max', max);
 
     const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
     const undefColor = "url(#diagonal-stripe-1)"
@@ -260,23 +279,65 @@ $(function () {
       })
       .attr('class', 'county') // give each path element a class name of county
 
-    // console.log("countiesGeoJson", countiesGeoJson);
-
     // applies event listeners to our polygons for user interaction
     counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
         d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
-        tooltip.classed('invisible', false).html(`<p>${d.properties.County} County</p>Prevalence: ${d.properties[healthVar]}%`) //make tooltip visible and update information
-        let info = $("#county_info");
-        info.html(`<p>${d.properties.County} County</p>Prevalence: ${d.properties[healthVar]}%`);
-        info.show();      
-      
+        tooltip.classed('invisible', false).html(`<h5>${d.properties.County} County</h5>Prevalence: ${d.properties[healthVar]}%`) //make tooltip visible and update information
+
+        let chronInfo = $("#chron_name");
+        chronInfo.html(`${title}`);
+        chronInfo.show();
+
+
+
+        let countyLabel = $("#county_label");
+        countyLabel.html(`${d.properties.County}`);
+        countyLabel.show();
+
+        let prevInfo = $("#prev_info");
+        prevInfo.html(`${d.properties[healthVar]}`);
+        prevInfo.show();
+
+        let kyAvg = $("#ky_avg");
+        kyAvg.html(`${d.properties[chron_KY_2017]}`);
+        kyAvg.show();
+
+        let kyLabel = $("#ky_label");
+        kyLabel.html(`Kentucky`);
+        kyLabel.show();
+
+        let usAvg = $("#us_avg");
+        usAvg.html(`${d.properties[chron_US_2017]}`);
+        usAvg.show();
+
+        let usLabel = $("#us_label");
+        usLabel.html(`US`);
+        usLabel.show();
+
+        // let prevInfo = $("#prev_info");
+        // prevInfo.html(`<h2>${d.properties[healthVar]}%</h2>`);
+        // prevInfo.show();
+
       })
 
       .on('mouseout', (d, i, nodes) => { // when mousing out of an element
         d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
         tooltip.classed('invisible', true) // hide the element
-        info = $("#county_info");
-        info.hide();
+
+        countyLabel = $("#county_label");
+        prevInfo = $("#prev_info");
+        kyAvg = $("#ky_avg");
+        kyLabel = $("#ky_label")
+        usAvg = $("#us_avg");
+        usLabel = $("#us_label")
+
+        countyLabel.hide();
+        prevInfo.hide();
+        kyAvg.hide()
+        kyLabel.hide();
+        usAvg.hide();
+        usLabel.hide();
+
       });
 
     // append state to the SVG
@@ -290,4 +351,3 @@ $(function () {
 
   }
 });
-  

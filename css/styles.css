@@ -10,14 +10,37 @@ body {
 }
 
 .list {
-  position:absolute;
-  left:0px;
-  top:0px;
-  min-width:3000px;
-  margin-left:12px;
-  margin-top:0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  min-width: 3000px;
+  margin-left: 12px;
+  margin-top: 0px;
 }
 
+.dataBox {
+  height: 5rem;
+  /* width: 18rem; */
+}
+
+.labelBox {
+  height: 3rem;
+}
+
+.card-body {
+  padding: 0.8rem;
+}
+
+.card-footer {
+  padding: 0.5rem;
+  font-size: small;
+  text-align: center;
+}
+
+.card-footer #county_label {
+  padding: 0rem;
+  font-size: small;
+}
 
 .state {
   fill: none;
@@ -29,6 +52,7 @@ body {
   /*fill: #fac484;*/
   stroke: #79b5fa;
 }
+
 
 .county:hover {
   /*fill: #f3e79b;*/
@@ -53,6 +77,12 @@ a {
 a:hover {
   color: #eb7f86;
   text-decoration: none;
+
+}
+
+.dropdown-menu {
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 #about {
