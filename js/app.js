@@ -263,6 +263,124 @@ $(function () {
         tickFormat: ".1f"
       }));
 
+      d3.select("#slider").on("input", function change() {
+        let value = this.value;
+        updateMap(value)
+
+      })
+
+    function updateMap(year) {
+      let y = healthVar.slice(0,-4) + year
+
+      svg.selectAll('*').remove() // remove all previous data
+
+      
+
+      svg.append("g")
+      .attr("transform", `translate(50,${height/10})`)
+      .append(() => legend({
+        color,
+        width: 320,
+        title: `${title} Prevalence (%)`,
+        tickSize: 1,
+        tickFormat: ".1f"
+      }));
+
+
+        // append a new g element
+        const counties = svg.append('g')
+        .selectAll('path')
+        .data(countiesGeoJson.features) // use the GeoJSON features
+        .join('path') // join thm to path elements
+        .attr('d', path) // use our path generator to project them on the screen
+        .attr('class', 'county') // give each path element a class name of county
+        .attr("fill", d => {
+          
+          console.log(healthVar.slice(0,-4))
+          let value = d.properties[y];
+          if (value.trim() === "*") {
+            return undefColor;
+          } else {
+            return color(value);
+          }
+        })
+        .attr('class', 'county') // give each path element a class name of county
+
+        d3.select('#yearTitle').text(year)
+
+        // applies event listeners to our polygons for user interaction
+    counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
+      d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
+      tooltip.classed('invisible', false).html(`<h5>${d.properties.County} County</h5>Prevalence: ${d.properties[y]}%, ${year}`) //make tooltip visible and update information
+
+      let chronInfo = $("#chron_name");
+      chronInfo.html(`${title}`);
+      chronInfo.show();
+
+
+
+      let countyLabel = $("#county_label");
+      countyLabel.html(`${d.properties.County}`);
+      countyLabel.show();
+
+      let prevInfo = $("#prev_info");
+      prevInfo.html(`${d.properties[y]}`);
+      prevInfo.show();
+
+      let kyAvgData = `${healthVar.slice(0,-4)}KY_${year}`
+      let kyAvg = $("#ky_avg");
+      kyAvg.html(`${d.properties[kyAvgData]}`);
+      kyAvg.show();
+
+      let kyLabel = $("#ky_label");
+      kyLabel.html(`Kentucky`);
+      kyLabel.show();
+
+      let usAvgData = `${healthVar.slice(0,-4)}US_${year}`
+      let usAvg = $("#us_avg");
+      usAvg.html(`${d.properties[usAvgData]}`);
+      usAvg.show();
+
+      let usLabel = $("#us_label");
+      usLabel.html(`US`);
+      usLabel.show();
+
+      // let prevInfo = $("#prev_info");
+      // prevInfo.html(`<h2>${d.properties[healthVar]}%</h2>`);
+      // prevInfo.show();
+
+    })
+
+    .on('mouseout', (d, i, nodes) => { // when mousing out of an element
+      d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
+      tooltip.classed('invisible', true) // hide the element
+
+      countyLabel = $("#county_label");
+      prevInfo = $("#prev_info");
+      kyAvg = $("#ky_avg");
+      kyLabel = $("#ky_label")
+      usAvg = $("#us_avg");
+      usLabel = $("#us_label")
+
+      countyLabel.hide();
+      prevInfo.hide();
+      kyAvg.hide()
+      kyLabel.hide();
+      usAvg.hide();
+      usLabel.hide();
+
+    });
+
+  // append state to the SVG
+  svg.append('g') // append a group element to the svg
+    .selectAll('path') // select multiple paths (that don't exist yet)
+    .data(stateData.features) // use the feature data from the geojson...update to stateData
+    .join('path') // join the data to the now created path elements
+    .attr('d', path) // provide the d attribute for the SVG paths
+
+    .classed('state', true); // give each path element a class name of state
+    }
+
     // append a new g element
     const counties = svg.append('g')
       .selectAll('path')
