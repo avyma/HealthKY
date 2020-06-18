@@ -254,7 +254,7 @@ $(function () {
 
 
     svg.append("g")
-      .attr("transform", "translate(50,150)")
+      .attr("transform", `translate(50,${height/10})`)
       .append(() => legend({
         color,
         width: 320,
