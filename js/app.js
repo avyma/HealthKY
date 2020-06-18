@@ -204,7 +204,7 @@ $(function () {
       .rotate([87, 0])
       .center([30, 0])
       //.translate([width / 1.25, height / 1.25])
-      .fitSize([width / 1.15, height / 1.15], stateData) // update data to stateData
+      .fitSize([width / 1, height / 1.15], stateData) // update data to stateData
 
 
     // declared path generator using the projection
@@ -253,7 +253,7 @@ $(function () {
 
 
     svg.append("g")
-      .attr("transform", "translate(500,600)")
+      .attr("transform", "translate(50,150)")
       .append(() => legend({
         color,
         width: 320,
