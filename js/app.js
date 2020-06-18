@@ -10,9 +10,11 @@ $(function () {
   const stateGeoJson = d3.json('data/ky.geojson');
   const countyTopoJson = d3.json('data/chronic_cond.json');
 
-  /* NOT WORKING PROPERLY
-   // When the browser resizes...
-   window.addEventListener('resize', () => {
+  // wait until data is loaded then send to getData function
+  Promise.all([stateGeoJson, countyTopoJson]).then(getData);
+
+  // When the browser resizes...
+  window.addEventListener('resize', () => {
 
     // remove existing SVG
     d3.selectAll("svg > *").remove();
@@ -24,40 +26,11 @@ $(function () {
         console.log(error)
       });
   });
-*/
-
-
-
-  // wait until data is loaded then send to getData function
-  Promise.all([stateGeoJson, countyTopoJson]).then(getData);
-
-
-  //console.log("State", stateGeoJson);
-  //console.log("county", countyTopoJson);
-
-  // select the HTML element that will hold our map
-  const mapContainer = d3.select('#ABmap')
-
-  // determine width and height of map from container
-  //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
-  // Reference .node() here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_node
-  const width = mapContainer.node().offsetWidth - 60;
-  const height = mapContainer.node().offsetHeight - 60;
-
-  // create and append a new SVG element to the map div
-  const svg = mapContainer
-    .append('svg')
-    .attr('width', width) // provide width and height attributes
-    .attr('height', height)
-    .classed('position-absolute', true) //add bootstrap class
-    .style('top', 30 + "px") //40 pixels from the top
-    .style('left', 30 + "px"); // 30 pixels from the left
-
-  // request the JSON text file, then call drawMap function
-  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
 
   function getData(data) {
+
+     
 
     //console.log("data", data);
 
@@ -159,9 +132,37 @@ $(function () {
 
   }
 
+  let mapContainer = d3.select('#ABmap')
+  let svg = mapContainer
+
+
   function drawMap(healthVar, chronName, data) {
 
     svg.selectAll('*').remove() // remove all previous data
+
+     //console.log("State", stateGeoJson);
+  //console.log("county", countyTopoJson);
+
+  // select the HTML element that will hold our map
+  // const mapContainer = d3.select('#ABmap')
+
+  // determine width and height of map from container
+  //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
+  // Reference .node() here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_node
+  const width = mapContainer.node().offsetWidth - 60;
+  const height = mapContainer.node().offsetHeight - 60;
+
+  // create and append a new SVG element to the map div
+  svg = mapContainer
+    .append('svg')
+    .attr('width', width) // provide width and height attributes
+    .attr('height', height)
+    .classed('position-absolute', true) //add bootstrap class
+    .style('top', 30 + "px") //40 pixels from the top
+    .style('left', 30 + "px"); // 30 pixels from the left
+
+  // request the JSON text file, then call drawMap function
+  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
 
     //JQuery to display chronic condition name on the dropdown HTML
@@ -204,7 +205,7 @@ $(function () {
       .rotate([87, 0])
       .center([30, 0])
       //.translate([width / 1.25, height / 1.25])
-      .fitSize([width / 1.15, height / 1.15], stateData) // update data to stateData
+      .fitSize([width / 1, height / 1.15], stateData) // update data to stateData
 
 
     // declared path generator using the projection
@@ -253,7 +254,7 @@ $(function () {
 
 
     svg.append("g")
-      .attr("transform", "translate(500,600)")
+      .attr("transform", `translate(50,${height/10})`)
       .append(() => legend({
         color,
         width: 320,
@@ -261,6 +262,126 @@ $(function () {
         tickSize: 1,
         tickFormat: ".1f"
       }));
+
+      d3.select("#slider").on("input", function change() {
+        let value = this.value;
+        updateMap(value)
+
+      })
+
+    function updateMap(year) {
+      let y = healthVar.slice(0,-4) + year
+
+      svg.selectAll('*').remove() // remove all previous data
+
+      // todo: Make loop through all years for each condition to get the min, max values
+      // then build a legend that spans all years
+
+
+      svg.append("g")
+      .attr("transform", `translate(50,${height/10})`)
+      .append(() => legend({
+        color,
+        width: 320,
+        title: `${title} Prevalence (%)`,
+        tickSize: 1,
+        tickFormat: ".1f"
+      }));
+
+
+        // append a new g element
+        const counties = svg.append('g')
+        .selectAll('path')
+        .data(countiesGeoJson.features) // use the GeoJSON features
+        .join('path') // join thm to path elements
+        .attr('d', path) // use our path generator to project them on the screen
+        .attr('class', 'county') // give each path element a class name of county
+        .attr("fill", d => {
+          
+          console.log(healthVar.slice(0,-4))
+          let value = d.properties[y];
+          if (value.trim() === "*") {
+            return undefColor;
+          } else {
+            return color(value);
+          }
+        })
+        .attr('class', 'county') // give each path element a class name of county
+
+        d3.select('#yearTitle').text(year)
+
+        // applies event listeners to our polygons for user interaction
+    counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
+      d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
+      tooltip.classed('invisible', false).html(`<h5>${d.properties.County} County</h5>Prevalence: ${d.properties[y]}%, ${year}`) //make tooltip visible and update information
+
+      let chronInfo = $("#chron_name");
+      chronInfo.html(`${title}`);
+      chronInfo.show();
+
+
+
+      let countyLabel = $("#county_label");
+      countyLabel.html(`${d.properties.County}`);
+      countyLabel.show();
+
+      let prevInfo = $("#prev_info");
+      prevInfo.html(`${d.properties[y]}`);
+      prevInfo.show();
+
+      let kyAvgData = `${healthVar.slice(0,-4)}KY_${year}`
+      let kyAvg = $("#ky_avg");
+      kyAvg.html(`${d.properties[kyAvgData]}`);
+      kyAvg.show();
+
+      let kyLabel = $("#ky_label");
+      kyLabel.html(`Kentucky`);
+      kyLabel.show();
+
+      let usAvgData = `${healthVar.slice(0,-4)}US_${year}`
+      let usAvg = $("#us_avg");
+      usAvg.html(`${d.properties[usAvgData]}`);
+      usAvg.show();
+
+      let usLabel = $("#us_label");
+      usLabel.html(`US`);
+      usLabel.show();
+
+      // let prevInfo = $("#prev_info");
+      // prevInfo.html(`<h2>${d.properties[healthVar]}%</h2>`);
+      // prevInfo.show();
+
+    })
+
+    .on('mouseout', (d, i, nodes) => { // when mousing out of an element
+      d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
+      tooltip.classed('invisible', true) // hide the element
+
+      countyLabel = $("#county_label");
+      prevInfo = $("#prev_info");
+      kyAvg = $("#ky_avg");
+      kyLabel = $("#ky_label")
+      usAvg = $("#us_avg");
+      usLabel = $("#us_label")
+
+      countyLabel.hide();
+      prevInfo.hide();
+      kyAvg.hide()
+      kyLabel.hide();
+      usAvg.hide();
+      usLabel.hide();
+
+    });
+
+  // append state to the SVG
+  svg.append('g') // append a group element to the svg
+    .selectAll('path') // select multiple paths (that don't exist yet)
+    .data(stateData.features) // use the feature data from the geojson...update to stateData
+    .join('path') // join the data to the now created path elements
+    .attr('d', path) // provide the d attribute for the SVG paths
+
+    .classed('state', true); // give each path element a class name of state
+    }
 
     // append a new g element
     const counties = svg.append('g')
