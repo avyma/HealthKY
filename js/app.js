@@ -274,7 +274,9 @@ $(function () {
 
       svg.selectAll('*').remove() // remove all previous data
 
-      
+      // todo: Make loop through all years for each condition to get the min, max values
+      // then build a legend that spans all years
+
 
       svg.append("g")
       .attr("transform", `translate(50,${height/10})`)
