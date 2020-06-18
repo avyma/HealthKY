@@ -10,9 +10,11 @@ $(function () {
   const stateGeoJson = d3.json('data/ky.geojson');
   const countyTopoJson = d3.json('data/chronic_cond.json');
 
-  /* NOT WORKING PROPERLY
-   // When the browser resizes...
-   window.addEventListener('resize', () => {
+  // wait until data is loaded then send to getData function
+  Promise.all([stateGeoJson, countyTopoJson]).then(getData);
+
+  // When the browser resizes...
+  window.addEventListener('resize', () => {
 
     // remove existing SVG
     d3.selectAll("svg > *").remove();
@@ -24,40 +26,11 @@ $(function () {
         console.log(error)
       });
   });
-*/
-
-
-
-  // wait until data is loaded then send to getData function
-  Promise.all([stateGeoJson, countyTopoJson]).then(getData);
-
-
-  //console.log("State", stateGeoJson);
-  //console.log("county", countyTopoJson);
-
-  // select the HTML element that will hold our map
-  const mapContainer = d3.select('#ABmap')
-
-  // determine width and height of map from container
-  //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
-  // Reference .node() here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_node
-  const width = mapContainer.node().offsetWidth - 60;
-  const height = mapContainer.node().offsetHeight - 60;
-
-  // create and append a new SVG element to the map div
-  const svg = mapContainer
-    .append('svg')
-    .attr('width', width) // provide width and height attributes
-    .attr('height', height)
-    .classed('position-absolute', true) //add bootstrap class
-    .style('top', 30 + "px") //40 pixels from the top
-    .style('left', 30 + "px"); // 30 pixels from the left
-
-  // request the JSON text file, then call drawMap function
-  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
 
   function getData(data) {
+
+     
 
     //console.log("data", data);
 
@@ -159,9 +132,37 @@ $(function () {
 
   }
 
+  let mapContainer = d3.select('#ABmap')
+  let svg = mapContainer
+
+
   function drawMap(healthVar, chronName, data) {
 
     svg.selectAll('*').remove() // remove all previous data
+
+     //console.log("State", stateGeoJson);
+  //console.log("county", countyTopoJson);
+
+  // select the HTML element that will hold our map
+  // const mapContainer = d3.select('#ABmap')
+
+  // determine width and height of map from container
+  //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
+  // Reference .node() here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_node
+  const width = mapContainer.node().offsetWidth - 60;
+  const height = mapContainer.node().offsetHeight - 60;
+
+  // create and append a new SVG element to the map div
+  svg = mapContainer
+    .append('svg')
+    .attr('width', width) // provide width and height attributes
+    .attr('height', height)
+    .classed('position-absolute', true) //add bootstrap class
+    .style('top', 30 + "px") //40 pixels from the top
+    .style('left', 30 + "px"); // 30 pixels from the left
+
+  // request the JSON text file, then call drawMap function
+  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
 
     //JQuery to display chronic condition name on the dropdown HTML
