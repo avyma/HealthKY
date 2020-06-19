@@ -6,348 +6,463 @@
 
 $(function () {
 
-  // request our data files and reference with variables
-  const stateGeoJson = d3.json('data/ky.geojson');
-  const countyTopoJson = d3.json('data/chronic_cond.json');
+    const stateGeoJson = d3.json('data/ky.geojson');
+    const chronTopoJson = d3.json('data/alcohol_abuse.json');
 
-  /* NOT WORKING PROPERLY
-   // When the browser resizes...
-   window.addEventListener('resize', () => {
+    Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alcohol_abuse"));
 
-    // remove existing SVG
-    d3.selectAll("svg > *").remove();
+    //console.log("State", stateGeoJson);
+    //console.log("county", countyTopoJson);
 
-    // use promise to call all data files, then send data to callback
-    Promise.all([stateGeoJson, countyTopoJson])
-      .then(getData)
-      .catch(error => {
-        console.log(error)
-      });
-  });
-*/
+    // select the HTML element that will hold our map
+    const mapContainer = d3.select('#ABmap')
 
+    // determine width and height of map from container
+    //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
+    // Reference .node() here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_node
+    const width = mapContainer.node().offsetWidth - 60;
+    const height = mapContainer.node().offsetHeight - 60;
 
+    // create and append a new SVG element to the map div
+    const svg = mapContainer
+        .append('svg')
+        .attr('width', width) // provide width and height attributes
+        .attr('height', height)
+        .classed('position-absolute', true) //add bootstrap class
+        .style('top', 30 + "px") //40 pixels from the top
+        .style('left', 30 + "px"); // 30 pixels from the left
 
-  // wait until data is loaded then send to getData function
-  Promise.all([stateGeoJson, countyTopoJson]).then(getData);
+    // request the JSON text file, then call drawMap function
+    //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
 
-
-  //console.log("State", stateGeoJson);
-  //console.log("county", countyTopoJson);
-
-  // select the HTML element that will hold our map
-  const mapContainer = d3.select('#ABmap')
-
-  // determine width and height of map from container
-  //Reference offsetWidth - 60 here: https://www.w3schools.com/jsref/prop_element_offsetwidth.asp
-  // Reference .node() here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_node
-  const width = mapContainer.node().offsetWidth - 60;
-  const height = mapContainer.node().offsetHeight - 60;
-
-  // create and append a new SVG element to the map div
-  const svg = mapContainer
-    .append('svg')
-    .attr('width', width) // provide width and height attributes
-    .attr('height', height)
-    .classed('position-absolute', true) //add bootstrap class
-    .style('top', 30 + "px") //40 pixels from the top
-    .style('left', 30 + "px"); // 30 pixels from the left
-
-  // request the JSON text file, then call drawMap function
-  //d3.json("data/states.geojson").then(drawMap); - updated with new codes below for loading multiple files
-
-
-  function getData(data) {
-
-    //console.log("data", data);
-
-    drawMap('Alc_Prev_2017', 'Alcohol Abuse', data)
 
     d3.select("#AB_PREV").on('click', () => {
-      drawMap('Alc_Prev_2017', 'Alcohol Abuse', data)
+
+        const chronTopoJson = d3.json('data/alcohol_abuse.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alcohol_abuse"));
+
+        dataToSlider(chronTopoJson);
 
     });
 
     d3.select("#ALZ_PREV").on('click', () => {
-      drawMap('AlzDem_Prev_2017', 'Alzheimer/Dementia', data)
+
+        const chronTopoJson = d3.json('data/alzheimer.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alzheimer"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
     });
 
     d3.select("#ART_PREV").on('click', () => {
-      drawMap('Arth_Prev_2017', 'Arthritis', data)
+
+        const chronTopoJson = d3.json('data/arthritis.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "athritis"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#AST_PREV").on('click', () => {
-      drawMap('Asth_Prev_2017', 'Asthma', data)
+
+        const chronTopoJson = d3.json('data/asthma.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "asthma"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
 
     });
 
     d3.select("#AF_PREV").on('click', () => {
-      drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
+
+        const chronTopoJson = d3.json('data/atrial_fibrillation.json');
+        // const chronTopoJson = d3.json('data/atrial_fibrillation.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "atrial_fibrillation"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
+
     });
 
     d3.select("#AUT_PREV").on('click', () => {
-      drawMap('AutSpect_Prev_2017', 'Autism Spectrum', data)
+
+        const dropDownFileName = d3.json('data/autism.json');
+
+        
+        // const chronTopoJson = d3.json('data/autism.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "autism"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#CAN_PREV").on('click', () => {
-      drawMap('Cancer_Prev_2017', 'Cancer', data)
+
+        const dropDownFileName = d3.json('data/cancer.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "cancer"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
 
     });
 
     d3.select("#CHRONKID_PREV").on('click', () => {
-      drawMap('ChronKidn_Prev_2017', 'Chronic Kidney Disease', data)
+
+        const chronTopoJson = d3.json('data/chronic_kidney.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "chronic_kidney"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
+
     });
 
     d3.select("#COPD_PREV").on('click', () => {
-      drawMap('COPD_Prev_2017', 'COPD', data)
+
+        const dropDownFileName = d3.json('data/copd.json');
+        // const chronTopoJson = d3.json('data/copd.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "copd"));
+        dataToSlider(stateGeoJson, chronTopoJson);
+
+
     });
 
     d3.select("#DEPR_PREV").on('click', () => {
-      drawMap('Deprs_Prev_2017', 'Depression', data)
+
+        const dropDownFileName = d3.json('data/depression.json');
+        // const chronTopoJson = d3.json('data/depression.json');
+        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "depression"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
 
     });
 
     d3.select("#DIA_PREV").on('click', () => {
-      drawMap('Diab_Prev_2017', 'Diabetes', data)
+
+        const chronTopoJson = d3.json('data/diabetes.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "diabetes"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#DRG_PREV").on('click', () => {
-      drawMap('DrgAb_Prev_2017', 'Drug/Substance Abuse', data)
+
+        const chronTopoJson = d3.json('data/drug_abuse.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "drug_abuse"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#HIV_PREV").on('click', () => {
-      drawMap('HIVAIDS_Prev_2017', 'HIV/AIDS', data)
+
+        const chronTopoJson = d3.json('data/hiv.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hiv"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#HF_PREV").on('click', () => {
-      drawMap('HF_Prev_2017', 'Heart Failure', data)
+
+        const chronTopoJson = d3.json('data/heart_failure.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "heart_failure"));;
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#HEP_PREV").on('click', () => {
-      drawMap('HepBC_Prev_2017', 'Hepatitis (B&C)', data)
+
+        const chronTopoJson = d3.json('data/hepatitis.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hepatitis"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#HLIP_PREV").on('click', () => {
-      drawMap('HpLip_Prev_2017', 'Hyperlipidemia', data)
+
+        const chronTopoJson = d3.json('data/hyperlipidemia.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hyperlipidemia"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#HTN_PREV").on('click', () => {
-      drawMap('HpTen_Prev_2017', 'Hypertension', data)
+
+        const chronTopoJson = d3.json('data/hypertension.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hypertension"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
 
     });
 
     d3.select("#IHD_PREV").on('click', () => {
-      drawMap('IHD_Prev_2017', 'Ischemic Heart Disease', data)
+
+        const chronTopoJson = d3.json('data/ihd.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "ihd"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
     d3.select("#OSTEO_PREV").on('click', () => {
-      drawMap('Osteo_Prev_2017', 'Osteoporosis', data)
+
+        const chronTopoJson = d3.json('data/osteoporosis.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "osteoporosis"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
     });
 
 
 
     d3.select("#SCHIZ_PREV").on('click', () => {
-      drawMap('SchizPsych_Prev_2017', 'Schizophrenia/Psychotic', data)
+
+        const chronTopoJson = d3.json('data/schizophrenia.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "schizophrenia"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
 
     });
 
     d3.select("#STRK_PREV").on('click', () => {
-      drawMap('Stroke_Prev_2017', 'Stroke', data)
+
+        const chronTopoJson = d3.json('data/stroke.json');
+        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "stroke"));
+
+        dataToSlider(stateGeoJson, chronTopoJson);
+
+
     });
 
-    // drawMap('AF_Prev_2017', 'Atrial Fibrillation', data)
+    function dataToSlider(stateGeoJson, chronTopoJson) {
+        d3.select("#slider").on('input', function () {
+            // listen slider - get the year
+            const yearSlider = $(this).val();
+            Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "depression", yearSlider));
+            console.log(yearSlider);
+            
+            // drawMap('Prev_2017', 'Depression', data)
+        });
+    }
 
-  }
+    function drawMap(data, dataSource, defYear = "2017") {
 
-  function drawMap(healthVar, chronName, data) {
+        console.log(data);
 
-    svg.selectAll('*').remove() // remove all previous data
+        svg.selectAll('*').remove() // remove all previous data
 
+        // refer to different datasets
+        const stateData = data[0];
+        const chronData = data[1];
 
-    //JQuery to display chronic condition name on the dropdown HTML
-    $('#dropdownMenuButton').html(chronName);
+        //convert the TopoJSON into GeoJSON
+        // Kentucky counties mapped
+        const chronGeoJson = topojson.feature(chronData, {
+            type: 'GeometryCollection',
+            geometries: chronData.objects[dataSource].geometries
+        });
 
-    // refer to different datasets
-    const stateData = data[0];
-    const countiesData = data[1];
+        console.log("chronGeo", chronGeoJson);
 
-    // manage prefix and new suffix of healthVar to create properties key per chron conditions
-    const chron_2010 = `${healthVar.slice(0,-4)}2010`;
-    const chron_2011 = `${healthVar.slice(0,-4)}2011`;
-    const chron_2012 = `${healthVar.slice(0,-4)}2012`;
-    const chron_2013 = `${healthVar.slice(0,-4)}2013`;
-    const chron_2014 = `${healthVar.slice(0,-4)}2014`;
-    const chron_2015 = `${healthVar.slice(0,-4)}2015`;
-    const chron_2016 = `${healthVar.slice(0,-4)}2016`;
-    const chron_2017 = `${healthVar.slice(0,-4)}2017`;
-    const chron_KY_2017 = `${healthVar.slice(0,-4)}KY_2017`;
-    const chron_US_2017 = `${healthVar.slice(0,-4)}US_2017`;
-
-    //console.log(countiesData);
-
-    //convert the TopoJSON into GeoJSON
-    // Kentucky counties mapped
-    const countiesGeoJson = topojson.feature(countiesData, {
-      type: 'GeometryCollection',
-      geometries: countiesData.objects.chronic_cond.geometries
-    });
-
-    console.log(countiesGeoJson);
-
-    // declare a geographic path generator
-    // fit the extent to the width and height using the geojson
-    // .geoAlbersUSA reference here: https://github.com/d3/d3-geo/blob/v1.12.0/README.md#geoAlbersUsa
-    // for projections reference here: https://github.com/d3/d3/blob/master/API.md#projections
-    const projection = d3.geoAlbers()
+        // declare a geographic path generator
+        // fit the extent to the width and height using the geojson
+        // .geoAlbers reference here: https://github.com/d3/d3-geo/blob/v1.12.0/README.md#geoAlbersUsa
+        // for projections reference here: https://github.com/d3/d3/blob/master/API.md#projections
+        const projection = d3.geoAlbers()
 
 
-      .rotate([87, 0])
-      .center([30, 0])
-      //.translate([width / 1.25, height / 1.25])
-      .fitSize([width / 1.15, height / 1.15], stateData) // update data to stateData
+            .rotate([87, 0])
+            .center([30, 0])
+            //.translate([width / 1.25, height / 1.25])
+            .fitSize([width / 1.15, height / 1.15], stateData) // update data to stateData
 
 
-    // declared path generator using the projection
-    // .geoPath Reference: https://github.com/d3/d3-geo#paths
-    const path = d3.geoPath()
-      .projection(projection);
+        // declared path generator using the projection
+        // .geoPath Reference: https://github.com/d3/d3-geo#paths
+        const path = d3.geoPath()
+            .projection(projection);
 
 
-    // create div for the tooltip and hide with opacity
-    // Reference (Bootstrap) --------------------------------
-    // container-fluid: https://getbootstrap.com/docs/4.5/layout/overview/#fluid
-    // tooltip: https://getbootstrap.com/docs/4.5/components/tooltips/
-    // Reference D3 -------------------------------------------
-    // .attr here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_attr
-    const tooltip = d3.select('.container-fluid').append('div')
-      .attr('class', 'my-tooltip bg-secondary text-white py-1 px-2 rounded position-absolute invisible');
+        // create div for the tooltip and hide with opacity
+        // Reference (Bootstrap) --------------------------------
+        // container-fluid: https://getbootstrap.com/docs/4.5/layout/overview/#fluid
+        // tooltip: https://getbootstrap.com/docs/4.5/components/tooltips/
+        // Reference D3 -------------------------------------------
+        // .attr here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_attr
 
-    // when mouse moves over the mapContainer
-    // d3.event: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
-    // d3.event (also include d3.event.pageX, d3.event.pageY): https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
-    mapContainer
-      .on('mousemove', event => {
-        //update the position of the tooltip
-        tooltip.style('left', (d3.event.pageX + 10) + 'px')
-          .style('top', (d3.event.pageY - 30) + 'px');
-      });
+        const tooltip = d3.select('.container-fluid').append('div')
+            .attr('class', 'my-tooltip bg-secondary text-white py-1 px-2 rounded position-absolute invisible');
 
-    // Use of map function, reference here: 
-    const myArray = countiesGeoJson.features.map(item => item.properties[healthVar])
-      .filter(item => item.trim() !== "*")
+        // when mouse moves over the mapContainer
+        // d3.event: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
+        // d3.event (also include d3.event.pageX, d3.event.pageY): https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
+        mapContainer
+            .on('mousemove', event => {
+                //update the position of the tooltip
+                tooltip.style('left', (d3.event.pageX + 10) + 'px')
+                    .style('top', (d3.event.pageY - 30) + 'px');
+            });
 
-    // for (let x of countiesGeoJson.features) {
-    //   myArray.push(+x.properties[healthVar])
-    // };
+        // Use of map function, reference here: 
+        // const myArray = chronGeoJson.features.map(item => item.properties[healthVar])
+        //     .filter(item => item.trim() !== "*")
 
-    //console.log('myArray', myArray);
-
-    const title = chronName;
-    const max = Math.max(...myArray)
-    const min = Math.min(...myArray)
-
-    //console.log('max', max);
-
-    const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
-    const undefColor = "url(#diagonal-stripe-1)"
+        const prevYear = "Prev_" + defYear;
+        const expYear = "Exp_" + defYear;
+        const myArray = chronGeoJson.features.map(item => item.properties[prevYear]).filter(item => item.trim() !== "*")
 
 
-    svg.append("g")
-      .attr("transform", "translate(500,600)")
-      .append(() => legend({
-        color,
-        width: 320,
-        title: `${title} Prevalence (%)`,
-        tickSize: 1,
-        tickFormat: ".1f"
-      }));
-
-    // append a new g element
-    const counties = svg.append('g')
-      .selectAll('path')
-      .data(countiesGeoJson.features) // use the GeoJSON features
-      .join('path') // join thm to path elements
-      .attr('d', path) // use our path generator to project them on the screen
-      .attr('class', 'county') // give each path element a class name of county
-      .attr("fill", d => {
-        let value = d.properties[healthVar];
-        if (value.trim() === "*") {
-          return undefColor;
-        } else {
-          return color(value);
-        }
-      })
-      .attr('class', 'county') // give each path element a class name of county
-
-    // applies event listeners to our polygons for user interaction
-    counties.on('mouseover', (d, i, nodes) => { // when mousing over an element
-        d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
-        tooltip.classed('invisible', false).html(`<h5>${d.properties.County} County</h5>Prevalence: ${d.properties[healthVar]}%`) //make tooltip visible and update information
-
-        let chronInfo = $("#chron_name");
-        chronInfo.html(`${title}`);
-        chronInfo.show();
+        const legendLabel = "Prev_Full";
+        const chronName = chronGeoJson.features[0].properties[legendLabel];
 
 
+        console.log("myArray", myArray);
+        console.log("chronName", chronName);
 
-        let countyLabel = $("#county_label");
-        countyLabel.html(`${d.properties.County}`);
-        countyLabel.show();
 
-        let prevInfo = $("#prev_info");
-        prevInfo.html(`${d.properties[healthVar]}`);
-        prevInfo.show();
+        const title = chronGeoJson.features[0].properties[legendLabel];
+        const max = Math.max(...myArray)
+        const min = Math.min(...myArray)
 
-        let kyAvg = $("#ky_avg");
-        kyAvg.html(`${d.properties[chron_KY_2017]}`);
-        kyAvg.show();
+        //console.log('max', max);
 
-        let kyLabel = $("#ky_label");
-        kyLabel.html(`Kentucky`);
-        kyLabel.show();
+        const color = d3.scaleQuantize([min, max], d3.schemeBlues[9])
+        const undefColor = "url(#diagonal-stripe-1)"
 
-        let usAvg = $("#us_avg");
-        usAvg.html(`${d.properties[chron_US_2017]}`);
-        usAvg.show();
+        svg.append("g")
+            .attr("transform", "translate(500,600)")
+            .append(() => legend({
+                color,
+                width: 320,
+                title: `${title} Prevalence (%)`,
+                tickSize: 1,
+                tickFormat: ".1f"
+            }));
 
-        let usLabel = $("#us_label");
-        usLabel.html(`US`);
-        usLabel.show();
+        // append a new g element
+        const chron_cond = svg.append('g')
+            .selectAll('path')
+            .data(chronGeoJson.features) // use the GeoJSON features
+            .join('path') // join thm to path elements
+            .attr('d', path) // use our path generator to project them on the screen
+            .attr('class', 'county') // give each path element a class name of county
+            .attr("fill", d => {
+                let value = d.properties[prevYear];
+                if (value.trim() === "*") {
+                    return undefColor;
+                } else {
+                    return color(value);
+                }
+            })
+            .attr('class', 'county') // give each path element a class name of county
 
-        // let prevInfo = $("#prev_info");
-        // prevInfo.html(`<h2>${d.properties[healthVar]}%</h2>`);
-        // prevInfo.show();
+        // applies event listeners to our polygons for user interaction
+        chron_cond.on('mouseover', (d, i, nodes) => { // when mousing over an element
+                d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
+                tooltip.classed('invisible', false).html(`<h5>${d.properties.County} County</h5>Prevalence: ${d.properties[prevYear]}%`) //make tooltip visible and update information
 
-      })
+                let chronInfo = $("#chron_name");
+                chronInfo.html(`${title}`);
+                chronInfo.show();
 
-      .on('mouseout', (d, i, nodes) => { // when mousing out of an element
-        d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
-        tooltip.classed('invisible', true) // hide the element
+                let countyLabel = $("#county_label");
+                countyLabel.html(`${d.properties.County}`);
+                countyLabel.show();
 
-        countyLabel = $("#county_label");
-        prevInfo = $("#prev_info");
-        kyAvg = $("#ky_avg");
-        kyLabel = $("#ky_label")
-        usAvg = $("#us_avg");
-        usLabel = $("#us_label")
+                let countyLabelExp = $("#county_label_exp");
+                countyLabelExp.html(`${d.properties.County}`);
+                countyLabelExp.show();
 
-        countyLabel.hide();
-        prevInfo.hide();
-        kyAvg.hide()
-        kyLabel.hide();
-        usAvg.hide();
-        usLabel.hide();
+                let prevInfo = $("#prev_info");
+                prevInfo.html(`${d.properties[prevYear]}`);
+                prevInfo.show();
 
-      });
+                let expInfo = $("#exp_info");
+                expInfo.html(`${(d.properties[expYear]).toLocaleString()}`);
+                expInfo.show();
 
-    // append state to the SVG
-    svg.append('g') // append a group element to the svg
-      .selectAll('path') // select multiple paths (that don't exist yet)
-      .data(stateData.features) // use the feature data from the geojson...update to stateData
-      .join('path') // join the data to the now created path elements
-      .attr('d', path) // provide the d attribute for the SVG paths
+                let kyAvg = $("#ky_avg");
+                kyAvg.html(`${d.properties.Prev_KY_2017}`);
+                kyAvg.show();
 
-      .classed('state', true); // give each path element a class name of state
+                let kyAvgExp = $("#ky_exp_avg");
+                kyAvgExp.html(`${d.properties.Exp_KY_2017}`);
+                kyAvgExp.show();
 
-  }
+                let kyLabel = $("#ky_label");
+                kyLabel.html(`Kentucky`);
+                kyLabel.show();
+
+                let kyLabelExp = $("#ky_label_exp");
+                kyLabelExp.html(`Kentucky`);
+                kyLabelExp.show();
+
+                let usAvg = $("#us_avg");
+                usAvg.html(`${d.properties.Prev_US_2017}`);
+                usAvg.show();
+
+                let usAvgExp = $("#us_exp_avg");
+                usAvgExp.html(`${d.properties.Exp_US_2017}`);
+                usAvgExp.show();
+
+
+                let usLabel = $("#us_label");
+                usLabel.html(`US`);
+                usLabel.show();
+
+                let usLabelExp = $("#us_label_exp");
+                usLabelExp.html(`US`);
+                usLabelExp.show();
+
+
+                // let prevInfo = $("#prev_info");
+                // prevInfo.html(`<h2>${d.properties[healthVar]}%</h2>`);
+                // prevInfo.show();
+
+            })
+
+            .on('mouseout', (d, i, nodes) => { // when mousing out of an element
+                d3.select(nodes[i]).classed('hover', false) //remove the class from the polygon
+                tooltip.classed('invisible', true) // hide the element
+
+                countyLabel = $("#county_label");
+                countyLabelExp = $("#county_label_exp");
+                prevInfo = $("#prev_info");
+                expInfo = $("#exp_info");
+
+                kyAvg = $("#ky_avg");
+                kyAvgExp = $("#ky_exp_avg");
+                kyLabel = $("#ky_label")
+                kyLabelExp = $("#ky_label_exp")
+                usAvg = $("#us_avg");
+                usAvgExp = $("us_exp_avg")
+                usAvgExp = $("#us_exp_avg");
+                usLabel = $("#us_label")
+                usLabelExp = $("#us_label_exp")
+
+
+                countyLabel.hide();
+                countyLabelExp.hide();
+                prevInfo.hide();
+                expInfo.hide();
+                kyAvg.hide();
+                kyAvgExp.hide();
+                kyLabel.hide();
+                kyLabelExp.hide();
+                usAvg.hide();
+                usAvgExp.hide();
+                usAvgExp.hide();
+                usLabel.hide();
+                usLabelExp.hide();
+
+            });
+
+        // append state to the SVG
+        svg.append('g') // append a group element to the svg
+            .selectAll('path') // select multiple paths (that don't exist yet)
+            .data(stateData.features) // use the feature data from the geojson...update to stateData
+            .join('path') // join the data to the now created path elements
+            .attr('d', path) // provide the d attribute for the SVG paths
+
+            .classed('state', true); // give each path element a class name of state
+
+    }
 });
