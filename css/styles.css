@@ -9,6 +9,18 @@ body {
   height: calc(75vh);
 }
 
+hr {
+  width: 100%;
+  /* height: 0.2px; */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #000107;
+}
+
+.my-tooltip {
+  background-color: rgb(1, 48, 110);
+}
+
 .list {
   position: absolute;
   left: 0px;
@@ -53,7 +65,6 @@ body {
   stroke: #79b5fa;
 }
 
-
 .county:hover {
   /*fill: #f3e79b;*/
   stroke: #fdfcfc;
@@ -65,12 +76,16 @@ h1 {
 }
 
 h5 {
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   text-align: center;
 }
 
+#dropdownMenuButton {
+  color: #2665da;
+}
+
 a {
-  color: #0dc295;
+  color: #457bdf;
   text-decoration: none;
 }
 

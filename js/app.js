@@ -9,7 +9,7 @@ $(function () {
     const stateGeoJson = d3.json('data/ky.geojson');
     const chronTopoJson = d3.json('data/alcohol_abuse.json');
 
-    Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alcohol_abuse"));
+    Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alcohol_abuse", "Alcohol Abuse"));
 
     //console.log("State", stateGeoJson);
     //console.log("county", countyTopoJson);
@@ -38,216 +38,238 @@ $(function () {
 
     d3.select("#AB_PREV").on('click', () => {
 
-        const chronTopoJson = d3.json('data/alcohol_abuse.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alcohol_abuse"));
+        const chronTitle = "Alcohol Abuse";
+        const chronFile = "alcohol_abuse";
 
-        dataToSlider(chronTopoJson);
+        const chronTopoJson = d3.json('data/alcohol_abuse.json');
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#ALZ_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/alzheimer.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "alzheimer"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "alzheimer";
+        const chronTitle = "Alzheimer";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#ART_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/arthritis.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "athritis"));
-        dataToSlider(stateGeoJson, chronTopoJson);
+
+        const chronFile = "arthritis";
+        const chronTitle = "Arthritis";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#AST_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/asthma.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "asthma"));
-        dataToSlider(stateGeoJson, chronTopoJson);
 
+        const chronFile = "asthma";
+        const chronTitle = "Asthma";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#AF_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/atrial_fibrillation.json');
-        // const chronTopoJson = d3.json('data/atrial_fibrillation.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "atrial_fibrillation"));
-        dataToSlider(stateGeoJson, chronTopoJson);
 
+        const chronFile = "atrial_fibrillation";
+        const chronTitle = "Atrial Fibrillation";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#AUT_PREV").on('click', () => {
 
-        const dropDownFileName = d3.json('data/autism.json');
+        const chronTopoJson = d3.json('data/autism.json');
 
-        
-        // const chronTopoJson = d3.json('data/autism.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "autism"));
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "autism";
+        const chronTitle = "Autism";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#CAN_PREV").on('click', () => {
 
-        const dropDownFileName = d3.json('data/cancer.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "cancer"));
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronTopoJson = d3.json('data/cancer.json');
 
+        const chronFile = "cancer";
+        const chronTitle = "Cancer";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#CHRONKID_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/chronic_kidney.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "chronic_kidney"));
-        dataToSlider(stateGeoJson, chronTopoJson);
 
+        const chronFile = "chronic_kidney";
+        const chronTitle = "Chronic Kidney";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#COPD_PREV").on('click', () => {
 
-        const dropDownFileName = d3.json('data/copd.json');
-        // const chronTopoJson = d3.json('data/copd.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "copd"));
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronTopoJson = d3.json('data/copd.json');
 
+        const chronFile = "copd";
+        const chronTitle = "COPD";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#DEPR_PREV").on('click', () => {
 
-        const dropDownFileName = d3.json('data/depression.json');
-        // const chronTopoJson = d3.json('data/depression.json');
-        // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "depression"));
+        const chronTopoJson = d3.json('data/depression.json');
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "depression";
+        const chronTitle = "Depression";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#DIA_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/diabetes.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "diabetes"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "diabetes";
+        const chronTitle = "Diabetes";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#DRG_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/drug_abuse.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "drug_abuse"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "drug_abuse";
+        const chronTitle = "Drug/Substance Abuse";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#HIV_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/hiv.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hiv"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "hiv";
+        const chronTitle = "HIV/AIDS";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#HF_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/heart_failure.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "heart_failure"));;
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "heart_failure";
+        const chronTitle = "Heart Failure";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#HEP_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/hepatitis.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hepatitis"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "hepatitis";
+        const chronTitle = "Hepatitis";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#HLIP_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/hyperlipidemia.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hyperlipidemia"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "hyperlipidemia";
+        const chronTitle = "Hyperlipidemia";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
     });
 
     d3.select("#HTN_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/hypertension.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "hypertension"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "hypertension";
+        const chronTitle = "Hypertension";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#IHD_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/ihd.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "ihd"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "ihd";
+        const chronTitle = "Ischemic Heart Disease";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#OSTEO_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/osteoporosis.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "osteoporosis"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "osteoporosis";
+        const chronTitle = "Osteoporosis";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
-
-
 
     d3.select("#SCHIZ_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/schizophrenia.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "schizophrenia"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "schizophrenia";
+        const chronTitle = "Schizophrenia";
+
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
     d3.select("#STRK_PREV").on('click', () => {
 
         const chronTopoJson = d3.json('data/stroke.json');
-        //Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "stroke"));
 
-        dataToSlider(stateGeoJson, chronTopoJson);
+        const chronFile = "stroke";
+        const chronTitle = "Stroke";
 
+        Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
 
     });
 
-    function dataToSlider(stateGeoJson, chronTopoJson) {
-        d3.select("#slider").on('input', function () {
-            // listen slider - get the year
-            const yearSlider = $(this).val();
-            Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, "depression", yearSlider));
-            console.log(yearSlider);
-            
-            // drawMap('Prev_2017', 'Depression', data)
-        });
-    }
+    // function dataToSlider(stateGeoJson, chronTopoJson, chronFile, chronTitle) {
+    //     d3.select("#slider").on('input', function () {
+    // listen slider - get the year
+    // const yearSlider = $(this).val();
+    // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle, yearSlider));
+    //console.log(yearSlider);
 
-    function drawMap(data, dataSource, defYear = "2017") {
+    // });
+    // }
 
-        console.log(data);
+    function drawMap(data, dataSource, chronTitle, defYear = "2017") {
 
         svg.selectAll('*').remove() // remove all previous data
+
+        $('#dropdownMenuButton').html(chronTitle);
 
         // refer to different datasets
         const stateData = data[0];
@@ -260,7 +282,7 @@ $(function () {
             geometries: chronData.objects[dataSource].geometries
         });
 
-        console.log("chronGeo", chronGeoJson);
+        //console.log("chronGeo", chronGeoJson);
 
         // declare a geographic path generator
         // fit the extent to the width and height using the geojson
@@ -268,18 +290,15 @@ $(function () {
         // for projections reference here: https://github.com/d3/d3/blob/master/API.md#projections
         const projection = d3.geoAlbers()
 
-
             .rotate([87, 0])
             .center([30, 0])
             //.translate([width / 1.25, height / 1.25])
             .fitSize([width / 1.15, height / 1.15], stateData) // update data to stateData
 
-
         // declared path generator using the projection
         // .geoPath Reference: https://github.com/d3/d3-geo#paths
         const path = d3.geoPath()
             .projection(projection);
-
 
         // create div for the tooltip and hide with opacity
         // Reference (Bootstrap) --------------------------------
@@ -289,11 +308,12 @@ $(function () {
         // .attr here: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#selection_attr
 
         const tooltip = d3.select('.container-fluid').append('div')
-            .attr('class', 'my-tooltip bg-secondary text-white py-1 px-2 rounded position-absolute invisible');
+            .attr('class', 'my-tooltip text-white py-1 px-2 rounded position-absolute invisible');
 
         // when mouse moves over the mapContainer
         // d3.event: https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
         // d3.event (also include d3.event.pageX, d3.event.pageY): https://github.com/d3/d3-selection/blob/v1.4.1/README.md#event
+
         mapContainer
             .on('mousemove', event => {
                 //update the position of the tooltip
@@ -312,11 +332,6 @@ $(function () {
 
         const legendLabel = "Prev_Full";
         const chronName = chronGeoJson.features[0].properties[legendLabel];
-
-
-        console.log("myArray", myArray);
-        console.log("chronName", chronName);
-
 
         const title = chronGeoJson.features[0].properties[legendLabel];
         const max = Math.max(...myArray)
@@ -357,7 +372,8 @@ $(function () {
         // applies event listeners to our polygons for user interaction
         chron_cond.on('mouseover', (d, i, nodes) => { // when mousing over an element
                 d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
-                tooltip.classed('invisible', false).html(`<h5>${d.properties.County} County</h5>Prevalence: ${d.properties[prevYear]}%`) //make tooltip visible and update information
+                tooltip.classed('invisible', false).html(`<h5><small>${d.properties.County} County</small></h5><h6 class="text-success"><small>${d.properties.Prev_Full} (${defYear})</small></h6><hr><p><h6><small>Prevalence: ${d.properties[prevYear]}%</small></h6><hr><h6><small>Kentucky Avg: ${d.properties["Prev_KY_" + defYear]}%</small></h6><p><small>US Avg: ${d.properties["Prev_US_" + defYear]}%</small></p>`)//make tooltip visible and update information
+                //make tooltip visible and update information
 
                 let chronInfo = $("#chron_name");
                 chronInfo.html(`${title}`);
@@ -380,11 +396,11 @@ $(function () {
                 expInfo.show();
 
                 let kyAvg = $("#ky_avg");
-                kyAvg.html(`${d.properties.Prev_KY_2017}`);
+                kyAvg.html(`${d.properties["Prev_KY_" + defYear]}`);
                 kyAvg.show();
 
                 let kyAvgExp = $("#ky_exp_avg");
-                kyAvgExp.html(`${d.properties.Exp_KY_2017}`);
+                kyAvgExp.html(`${d.properties["Exp_KY_" + defYear]}`);
                 kyAvgExp.show();
 
                 let kyLabel = $("#ky_label");
@@ -396,11 +412,11 @@ $(function () {
                 kyLabelExp.show();
 
                 let usAvg = $("#us_avg");
-                usAvg.html(`${d.properties.Prev_US_2017}`);
+                usAvg.html(`${d.properties["Prev_US_" + defYear]}`);
                 usAvg.show();
 
                 let usAvgExp = $("#us_exp_avg");
-                usAvgExp.html(`${d.properties.Exp_US_2017}`);
+                usAvgExp.html(`${d.properties["Exp_US_" + defYear]}`);
                 usAvgExp.show();
 
 
