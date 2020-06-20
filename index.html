@@ -47,8 +47,8 @@
 
         <!--Dropdown items: All chronic conditions begins-->
         <div class="nav nav-item dropdown">
-            <a class="nav-link nav-item dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link nav-item dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 Dropdown button
             </a>
 
@@ -99,12 +99,12 @@
 
                             <!-- HTML slider INPUT see here: https://developer.mozilla.org/en-US/docs/Learn/Forms/Basic_native_form_controls -->
                             <!-- Also see here: <!-- HTML slider INPUT see here: https://developer.mozilla.org/en-US/docs/Learn/Forms/Basic_native_form_controls -->
-    
+
                             <label>
                                 <span class="min">2010</span>
                                 <input type="range" min="2010" , max="2017" , value="2017" , step="1" ,
                                     class="year-slider" id="slider"></input>
-                                    <span class="max">2017</span>
+                                <span class="max">2017</span>
                             </label>
                         </div>
 
@@ -145,7 +145,7 @@
 
 
                         <div class="tab-pane fade" id="analysis">
-                            <div class="container" id="prev">
+                            <div class="container-fluid" id="prev">
 
                                 <div class="data-title row text-white px-sm-1 py-sm-3">
                                     <h3 id="chron_name"></h3>
@@ -195,10 +195,56 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
+                                </div>
 
+                                <div style="height: 2rem"></div>
 
+                                <div class="row">
+                                    <div class="card bg-dark px-3 py-1" style="height: 12rem">
+                                        <div class="card-header pt-1 px-2">Prevalence (%)</div>
+                                        <div class="dataBox row">
+
+                                            <div class="col-lg-4 col-sm-6 py-sm-3">
+                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                    <!-- <div class="card-header">Header</div> -->
+                                                    <div class="card-body my-sm-auto mx-sm-auto">
+                                                        <h1 class="card-title display-5" id="prev_info"></h1>
+                                                        <!-- <p class="card-text"></p> -->
+                                                    </div>
+                                                    <div class="card-footer" style="height: 2rem;">
+                                                        <h6 style="font-size: small;" id="county_label"></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-sm-6 py-sm-3">
+                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                    <!-- <div class="card-header">Header</div> -->
+                                                    <div class="card-body my-sm-auto mx-sm-auto">
+                                                        <h1 class="card-title display-5" id="ky_avg"></h1>
+                                                        <!-- <p class="card-text"></p> -->
+                                                    </div>
+                                                    <div class="card-footer" style="height: 2rem;">
+                                                        <h6 style="font-size: small;" id="ky_label"></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-sm-6 py-sm-3">
+                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                    <!-- <div class="card-header">Header</div> -->
+                                                    <div class="card-body my-sm-auto mx-sm-auto">
+                                                        <h1 class="card-title display-5" id="us_avg"></h1>
+                                                        <!-- <p class="card-text"></p> -->
+                                                    </div>
+                                                    <div class="card-footer" style="height: 2rem;">
+                                                        <h6 style="font-size: small;" id="us_label"></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div style="height: 2rem"></div>
