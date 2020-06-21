@@ -9,6 +9,12 @@ body {
   height: calc(75vh);
 }
 
+/* #prev {
+  /* width: 99%; */
+  /* height: 57rem;
+  overflow: scroll; */
+/*} */
+
 hr {
   width: 100%;
   /* height: 0.2px; */
@@ -19,6 +25,11 @@ hr {
 
 .my-tooltip {
   background-color: rgb(1, 48, 110);
+}
+
+#scroll-container {
+  height: 35rem;
+  overflow-y: scroll;
 }
 
 .list {
@@ -45,6 +56,12 @@ hr {
 
 .card-footer {
   padding: 0.5rem;
+  font-size: small;
+  text-align: center;
+}
+
+.card-footer-v {
+  padding: 0rem;
   font-size: small;
   text-align: center;
 }

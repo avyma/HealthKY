@@ -26,7 +26,7 @@
 
 <body>
 
-    <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <svg height="1" width="1" xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
             <pattern id="diagonal-stripe-1" patternUnits="userSpaceOnUse" width="10" height="10">
                 <image
@@ -119,45 +119,44 @@
                     <ul class="nav nav-tabs pt-sm-3">
 
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#analysis">Analysis</a>
+                            <a class="nav-link active" data-toggle="tab" href="#analysis">Analysis</a>
                         </li>
-                        <li class="nav-item" style="text-shadow: rgb(1, 1, 105);">
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#graph">Graph</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#bkground">Background</a>
-                        </li>
+                        <!-- <li class="nav-item"> -->
+                            <!-- <a class="nav-link" data-toggle="tab" href="#bkground">Background</a> -->
+                        <!-- </li> -->
 
                     </ul>
 
 
                     <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="bkground">
-                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
-                                stumptown
-                                aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles
-                                vegan
-                                helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu
-                                banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone.
-                                Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-                        </div>
+                        <!-- <div class="tab-pane fade show active" id="analysis"></div> -->
+
 
 
                         <div class="tab-pane fade" id="analysis">
-                            <div class="container-fluid" id="prev">
+                            <!-- <div class="container-fluid" id="prev"> -->
 
-                                <div class="data-title row text-white px-sm-1 py-sm-3">
-                                    <h3 id="chron_name"></h3>
-                                </div>
 
-                                <div class="row">
-                                    <div class="card bg-dark px-3 py-1" style="height: 12rem">
+                            <!-- Add scrollable container -->
+                            <!-- <div class="ex1"> -->
+                            <div class="data-title row text-white pl-sm-3 pt-sm-4">
+                                <h3 id="chron_name"></h3>
+                            </div>
+
+                            <div id="scroll-container">
+
+                                <div class="row px-sm-3">
+                                    <div class="card bg-dark px-1 py-1" style="width: 100%; height: 12rem">
                                         <div class="card-header pt-1 px-2">Prevalence (%)</div>
-                                        <div class="dataBox row">
+                                        <div class="dataBox row px-sm-2">
+
 
                                             <div class="col-lg-4 col-sm-6 py-sm-3">
-                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                <div class="card text-white shadow" style="height: 7rem;">
                                                     <!-- <div class="card-header">Header</div> -->
                                                     <div class="card-body my-sm-auto mx-sm-auto">
                                                         <h1 class="card-title display-5" id="prev_info"></h1>
@@ -169,8 +168,9 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="col-lg-4 col-sm-6 py-sm-3">
-                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                <div class="card text-white shadow" style="height: 7rem;">
                                                     <!-- <div class="card-header">Header</div> -->
                                                     <div class="card-body my-sm-auto mx-sm-auto">
                                                         <h1 class="card-title display-5" id="ky_avg"></h1>
@@ -183,7 +183,7 @@
                                             </div>
 
                                             <div class="col-lg-4 col-sm-6 py-sm-3">
-                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                <div class="card text-white shadow" style="height: 7rem;">
                                                     <!-- <div class="card-header">Header</div> -->
                                                     <div class="card-body my-sm-auto mx-sm-auto">
                                                         <h1 class="card-title display-5" id="us_avg"></h1>
@@ -198,63 +198,93 @@
                                     </div>
                                 </div>
 
-                                <div style="height: 2rem"></div>
+                                <div style="height: 1rem"></div>
 
-                                <div class="row">
-                                    <div class="card bg-dark px-3 py-1" style="height: 12rem">
-                                        <div class="card-header pt-1 px-2">Prevalence (%)</div>
-                                        <div class="dataBox row">
+                                <div class="row px-sm-3">
+                                    <div class="card bg-dark px-1 py-1" style="width: 100%; height: 23rem">
+                                        <div class="card-header pt-1 px-1">
+                                            <span>Social Vulnerability Index:</span>
+                                            <span id="svi_header"></span>
+                                        </div>
+                                        <div class="dataBox row px-sm-2">
 
                                             <div class="col-lg-4 col-sm-6 py-sm-3">
-                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                <div class="card text-white shadow" style="height: 8rem;">
                                                     <!-- <div class="card-header">Header</div> -->
                                                     <div class="card-body my-sm-auto mx-sm-auto">
-                                                        <h1 class="card-title display-5" id="prev_info"></h1>
+                                                        <h3 class="card-title pt-2" id="social"></h3>
                                                         <!-- <p class="card-text"></p> -->
                                                     </div>
-                                                    <div class="card-footer" style="height: 2rem;">
-                                                        <h6 style="font-size: small;" id="county_label"></h6>
+                                                    <div class="card-footer pt-1" style="height: 3rem;">
+                                                        <h6><small>Socio-economic</small></h6>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-4 col-sm-6 py-sm-3">
-                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                <div class="card text-white shadow" style="height: 8rem;">
                                                     <!-- <div class="card-header">Header</div> -->
                                                     <div class="card-body my-sm-auto mx-sm-auto">
-                                                        <h1 class="card-title display-5" id="ky_avg"></h1>
+                                                        <h3 class="card-title pt-2" id="household"></h3>
                                                         <!-- <p class="card-text"></p> -->
                                                     </div>
-                                                    <div class="card-footer" style="height: 2rem;">
-                                                        <h6 style="font-size: small;" id="ky_label"></h6>
+                                                    <div class="card-footer pt-1" style="height: 3rem;">
+                                                        <h6><small>Household & Disability</small></h6>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-4 col-sm-6 py-sm-3">
-                                                <div class="card text-white shadow" style="width: 7rem; height: 7rem;">
+                                                <div class="card text-white shadow" style="height: 8rem;">
                                                     <!-- <div class="card-header">Header</div> -->
                                                     <div class="card-body my-sm-auto mx-sm-auto">
-                                                        <h1 class="card-title display-5" id="us_avg"></h1>
+                                                        <h3 class="card-title pt-2" id="minority"></h3>
                                                         <!-- <p class="card-text"></p> -->
                                                     </div>
-                                                    <div class="card-footer" style="height: 2rem;">
-                                                        <h6 style="font-size: small;" id="us_label"></h6>
+                                                    <div class="card-footer pt-1" style="height: 3rem;">
+                                                        <h6><small>Minority & Language</small></h6>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-4 col-sm-6 pt-sm-1">
+                                                <div class="card text-white shadow" style="height: 8rem;">
+                                                    <!-- <div class="card-header">Header</div> -->
+                                                    <div class="card-body my-sm-auto mx-sm-auto">
+                                                        <h3 class="card-title pt-2" id="housing"></h3>
+                                                        <!-- <p class="card-text"></p> -->
+                                                    </div>
+                                                    <div class="card-footer pt-1" style="height: 3rem;">
+                                                        <h6><small>Housing & Transport</small></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-sm-6 pt-sm-1">
+                                                <div class="card text-white shadow" style="height: 8rem;">
+                                                    <!-- <div class="card-header">Header</div> -->
+                                                    <div class="card-body my-sm-auto mx-sm-auto">
+                                                        <h3 class="card-title pt-2" id="summary"></h3>
+                                                        <!-- <p class="card-text"></p> -->
+                                                    </div>
+                                                    <div class="card-footer pt-1" style="height: 3rem;">
+                                                        <h6><small>Summary Ranking</small></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
 
-                                <div style="height: 2rem"></div>
+                                <div row style="height: 1rem"></div>
 
-                                <div class="row">
-                                    <div class="card bg-dark px-3 py-2" style="width: 95%; height: 22rem">
+                                <div class="row px-sm-3">
+                                    <div class="card bg-dark px-3 py-2" style="width: 100%; height: 22rem">
                                         <div class="card-header pt-1 px-2">Expenditure per capita ($)</div>
 
 
-                                        <div class="dataBox row">
+                                        <div class="dataBox row px-sm-">
 
                                             <div class="col-sm-12 py-sm-2">
                                                 <div class="card text-white shadow" style="height: 5rem;">
@@ -302,8 +332,6 @@
                         </div>
 
 
-
-
                         <div class="tab-pane fade" id="graph">
                             <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's
                                 organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify
@@ -316,9 +344,8 @@
                 </aside>
             </section>
         </div>
-    </div>
+    </div> <!-- end container-fluid -->
 
-    </div>
 
     <footer class="row bg-dark text-white py-3">
         <div class="col mx-2">
@@ -331,12 +358,6 @@
             </ul>
         </div>
     </footer>
-
-    </div> <!-- end .container-fluid -->
-
-
-
-
 
 
 

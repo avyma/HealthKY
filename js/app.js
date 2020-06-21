@@ -282,7 +282,7 @@ $(function () {
             geometries: chronData.objects[dataSource].geometries
         });
 
-        //console.log("chronGeo", chronGeoJson);
+        console.log("chronGeo", chronGeoJson);
 
         // declare a geographic path generator
         // fit the extent to the width and height using the geojson
@@ -372,7 +372,7 @@ $(function () {
         // applies event listeners to our polygons for user interaction
         chron_cond.on('mouseover', (d, i, nodes) => { // when mousing over an element
                 d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
-                tooltip.classed('invisible', false).html(`<h5><small>${d.properties.County} County</small></h5><h6 class="text-success"><small>${d.properties.Prev_Full} (${defYear})</small></h6><hr><p><h6><small>Prevalence: ${d.properties[prevYear]}%</small></h6><hr><h6><small>Kentucky Avg: ${d.properties["Prev_KY_" + defYear]}%</small></h6><p><small>US Avg: ${d.properties["Prev_US_" + defYear]}%</small></p>`)//make tooltip visible and update information
+                tooltip.classed('invisible', false).html(`<h5><small>${d.properties.County} County</small></h5><h6 class="text-success"><small>${d.properties.Prev_Full} (${defYear})</small></h6><hr><p><h6><small>Prevalence: ${d.properties[prevYear]}%</small></h6><hr><h6><small>Kentucky Avg: ${d.properties["Prev_KY_" + defYear]}%</small></h6><p><small>US Avg: ${d.properties["Prev_US_" + defYear]}%</small></p>`) //make tooltip visible and update information
                 //make tooltip visible and update information
 
                 let chronInfo = $("#chron_name");
@@ -428,10 +428,30 @@ $(function () {
                 usLabelExp.html(`US`);
                 usLabelExp.show();
 
+                // Social Vulnerability Index
+                let sviHeader = $("#svi_header");
+                sviHeader.html(`<span style="color:green">${d.properties.County}</span>`);
+                sviHeader.show();
 
-                // let prevInfo = $("#prev_info");
-                // prevInfo.html(`<h2>${d.properties[healthVar]}%</h2>`);
-                // prevInfo.show();
+                let socioEco = $("#social");
+                socioEco.html(`${d.properties.RPL_THEME1}`);
+                socioEco.show();
+
+                let houseDis = $("#household");
+                houseDis.html(`${(d.properties.RPL_THEME2).toLocaleString()}`);
+                houseDis.show();
+
+                let minLang = $("#minority");
+                minLang.html(`${(d.properties.RPL_THEME3).toLocaleString()}`);
+                minLang.show();
+
+                let housTrans = $("#housing");
+                housTrans.html(`${(d.properties.RPL_THEME4).toLocaleString()}`);
+                housTrans.show();
+
+                let sumRank = $("#summary");
+                sumRank.html(`${(d.properties.RPL_THEMES).toLocaleString()}`);
+                sumRank.show();
 
             })
 
@@ -448,26 +468,46 @@ $(function () {
                 kyAvgExp = $("#ky_exp_avg");
                 kyLabel = $("#ky_label")
                 kyLabelExp = $("#ky_label_exp")
+
                 usAvg = $("#us_avg");
                 usAvgExp = $("us_exp_avg")
                 usAvgExp = $("#us_exp_avg");
                 usLabel = $("#us_label")
                 usLabelExp = $("#us_label_exp")
 
+                sviHeader = $("#svi_header")
+                sviHeader.hide();
 
                 countyLabel.hide();
                 countyLabelExp.hide();
                 prevInfo.hide();
                 expInfo.hide();
+
                 kyAvg.hide();
                 kyAvgExp.hide();
                 kyLabel.hide();
                 kyLabelExp.hide();
+
                 usAvg.hide();
                 usAvgExp.hide();
                 usAvgExp.hide();
                 usLabel.hide();
                 usLabelExp.hide();
+
+                socioEco = $("#social")
+                socioEco.hide();
+
+                houseDis = $("#household")
+                houseDis.hide();
+
+                minLang = $("#minority")
+                minLang.hide();
+
+                housTrans = $("#housing")
+                housTrans.hide();
+
+                sumRank = $("#summary")
+                sumRank.hide();
 
             });
 
