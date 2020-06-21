@@ -215,7 +215,7 @@ $(function () {
 
         const chronTopoJson = d3.json('data/ihd.json');
 
-        const chronFile = "IHD";
+        const chronFile = "ihd";
         const chronTitle = "Ischemic Heart Disease";
 
         Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
