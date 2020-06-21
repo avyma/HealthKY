@@ -9,6 +9,12 @@ body {
   height: calc(75vh);
 }
 
+#note {
+  background-color: darkgrey;
+  color: white;
+  font-size: small;
+}
+
 /* #prev {
   /* width: 99%; */
   /* height: 57rem;
