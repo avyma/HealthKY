@@ -233,8 +233,13 @@ $(function () {
           .style('top', (d3.event.pageY - 30) + 'px');
       });
 
+
+    
+
     // Use of map function, reference here: 
     const myArray = countiesGeoJson.features.map(item => item.properties[healthVar])
+    
+    // TODO: Loop through all years to build legend values
       .filter(item => item.trim() !== "*")
 
     // for (let x of countiesGeoJson.features) {
