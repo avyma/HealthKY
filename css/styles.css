@@ -33,7 +33,12 @@ hr {
   background-color: rgb(1, 48, 110);
 }
 
-#scroll-container {
+#scroll-background {
+  height: 40rem;
+  overflow-y: scroll;
+}
+
+#scroll-analysis {
   height: 35rem;
   overflow-y: scroll;
 }
@@ -100,20 +105,20 @@ h1 {
 
 h5 {
   letter-spacing: 2px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 #dropdownMenuButton {
-  color: #2665da;
+  color: #bbbe02;
 }
 
 a {
-  color: #457bdf;
+  color: #bbbe02;
   text-decoration: none;
 }
 
 a:hover {
-  color: #eb7f86;
+  color: #2665da;
   text-decoration: none;
 
 }

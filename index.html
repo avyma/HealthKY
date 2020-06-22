@@ -119,10 +119,13 @@
                     <ul class="nav nav-tabs pt-sm-3">
 
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#analysis">Analysis</a>
-
-
+                            <a class="nav-link active" data-toggle="tab" href="#writeup">About</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#analysis">Analysis</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#graph">Graph</a>
                         </li>
@@ -137,7 +140,113 @@
                     <div id="myTabContent" class="tab-content">
                         <!-- <div class="tab-pane fade show active" id="analysis"></div> -->
 
+                        <div class="tab-pane fade text-dark" id="writeup">
 
+                            <div class="data-title row text-white pl-sm-3 pt-sm-4">
+                                <h3>Overview</h3>
+                            </div>
+
+                            <div class="scroll pt-4 px-sm-2" id="scroll-analysis">
+                                <h5 style="color:rgb(228, 163, 43)" ;>The Map</h5>
+                                <p>This map is a modest attempt to provide a cross-sectional overview of the prevalence
+                                    and
+                                    expenditure per capita of 21 common chronic conditions across the counties of
+                                    Kentucky. Key features include an Analysis tab panel that presents additional
+                                    information
+                                    on the expenditure per capita per county per chronic conditions as well as the the
+                                    Social Vulnerability Index 2018 (SVI) for each respective county. Work is underway
+                                    to present a bar graph of chronic conditions between 2010-2017.</p>
+                                <h5 style="color:rgb(228, 163, 43)" ;>Chronic Conditions</h5>
+                                <p>Originally intended to visualize only heart-related chronic conditions, the project
+                                    has
+                                    evolved to favor a wider visualization spectrum to instill and stimulate honest
+                                    appreciation and understanding of the relationship between health and the
+                                    socioeconomic conditions unique to each counties of Kentucky. Personally, in the
+                                    process of making this map, it is difficult to escape lingering thoughts “What are
+                                    the probability of becoming part of the statistics?" In Kentucky and elsewhere in
+                                    our nation, the health status is equally bleak.
+                                </p>
+                                <h5 style="color:rgb(228, 163, 43)" ;>Social Vulnerability Index</h5>
+                                <p>Before addressing “The Social Vulnerability
+                                    Index”, it is helpful to glance at the <a
+                                        href="https://www.cdc.gov/socialdeterminants/index.htm">Social Determinants of
+                                        Health (SDOH)</a>. Conceived by the CDC, it is a relatively new concept stating
+                                    that "conditions in the places where people live, learn, work, and
+                                    play
+                                    affect a range of health risks and outcomes". Indeed, there is growing evidence to
+                                    suggest that social
+                                    determinants such as unstable housing, low income, unsafe neighborhoods, or
+                                    substandard
+                                    education will have a negative impact on health. SODH is important to improve
+                                    population
+                                    health and foster health equity.</p>
+                                <p>As our country is grappling with runaway healthcare costs, the SODH may represent a
+                                    substantial paradigm shift from traditional treatment-first to prevention-first
+                                    philosophy. It may present invaluable opportunity for policymakers and healthcare
+                                    professionals to rethink the different ways and means to distribute valuable health
+                                    resources. For the citizenry, understanding SODH can nurture the growth of an
+                                    inclusive grassroots activism toward a cleaner, healthier and equitable living
+                                    conditions.</p>
+                                <p><a href="https://svi.cdc.gov">The Social Vulnerability Index</a> can be described as
+                                    a
+                                    scorecard to measure the level of community's resilience when confronted by external
+                                    stresses on human health including stresses
+                                    from natural and human-caused disasters or disease outbreaks. Lowering social
+                                    vulnerability can decrease both human suffering and economic loss.</p>
+                                <p>In this map we included 4 themes described in the SVI: 1) Socioeconomic; 2) Household
+                                    Composition &
+                                    Disability;
+                                    3) Minority Status & Language; 4) Housing Type & Transportation. A summary ranking
+                                    therme was
+                                    also included in the analysis. <a
+                                        href="https://svi.cdc.gov/Documents/Data/2018_SVI_Data/SVI2018Documentation.pdf">SVI
+                                        Documentation</a>
+                                </p>
+
+                                <h5 style="color:rgb(228, 163, 43)" ;>Applications</h5>
+                                <p> In the Analysis tab, a simple dashboard is used to display key indicators: 1)
+                                    prevalence (County, Kentucky Average, and US Average); 2) SVI themes; and 3)
+                                    expenditure per capita. The tooltip on the map also provides indicators. However, it
+                                    is limited in the display of those related to prevalence. It is intended that the
+                                    map when used in combination with the Analysis panel can provide a useful high-level
+                                    view of the extent of the specific chronic conditions by counties and its
+                                    relationships to key SVI theme indicators and expense per capita. For instance,
+                                    several inferences can be derived on the characteristics of health expenses in, say,
+                                    less affluent counties of Eastern Kentucky versus a more urbanized counties like
+                                    Jefferson and Fayette. Furthermore, inferences can be made on the level of
+                                    prevalence of specific types of chronic conditions and its comparative costs based
+                                    on the level of income and urbanization.</p>
+
+                                <p>In sum, this analysis should provide useful overview for medical researchers and
+                                    policymakers in the area of grant applications with regards to formulating programs
+                                    to target the right resources to address the chronic conditions that exists in the
+                                    counties.</p>
+
+                                <h5 style="color:rgb(228, 163, 43)" ;>Key Improvements</h5>
+
+                                <p>Improvements will significantly depens on continuing development and acquisition of
+                                    technical and design skills and experience. Deployment of the right tools for the
+                                    intended purpose of the project is critical.</p>
+
+                                <p>However, many important lessons learned:</p>
+                                <ul>
+                                    <li>Data: SQL and database related skills are primary skills when work involved
+                                        large datasets. Continued understanding of the use of CSV format data in
+                                        geospatial
+                                        analysis could lessen the burden of data wrangling.</li>
+                                    <li>Work Breakdown Structure: Tasks breakdown and resource estimate with a strong
+                                        project
+                                        management approach is critical for planning as well as renumeration purposes.
+                                    </li>
+                                    <br>
+                                    <p>This map was conceived from the perspective of a designer not a software
+                                        developer. The best UI to visualize the data would be to deploy the swipe
+                                        capability between two maps capability. One map should show the vulnerability
+                                        index and the other the chronic conditions and/or expenditure per capita per
+                                        county.
+                                    </p>
+                            </div>
+                        </div>
 
                         <div class="tab-pane fade" id="analysis">
                             <!-- <div class="container-fluid" id="prev"> -->
@@ -149,7 +258,7 @@
                                 <h3 id="chron_name"></h3>
                             </div>
 
-                            <div id="scroll-container">
+                            <div id="scroll-analysis">
 
                                 <div class="row px-sm-3">
                                     <div class="card bg-dark px-1 py-1" style="width: 100%; height: 12rem">
@@ -196,6 +305,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -341,7 +451,7 @@
                         </div>
 
 
-                        <div class="tab-pane fade" id="graph">
+                        <div class="tab-pane fade text-dark" id="graph">
                             <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's
                                 organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify
                                 pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy
