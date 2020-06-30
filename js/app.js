@@ -251,20 +251,9 @@ $(function () {
 
     });
 
-
-    // function dataToSlider(stateGeoJson, chronTopoJson, chronFile, chronTitle) {
-    //     d3.select("#slider").on('input', function () {
-    // listen slider - get the year
-    // const yearSlider = $(this).val();
-    // Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle, yearSlider));
-    //console.log(yearSlider);
-
-    // });
-    // }
-
     function drawMap(data, dataSource, chronTitle) {
 
-        const defYear = "2010";
+        const defYear = "2010"; //define default year - 2010
 
         svg.selectAll('*').remove() // remove all previous data
 
@@ -284,11 +273,12 @@ $(function () {
         // ********* Constants (variables) relevant for defining choropleth & legend color characteristics ************
         const prevYear = "Prev_" + defYear; // name of chronic conditions (prevalence) - Naming convention: complete with year attached as suffix
         const expYear = "Exp_" + defYear; // name of chronic conditions (expenditure) - Naming convention: complete with year attached as suffix
-        // const myArray = (chronGeoJson.features.map(item => item.properties[prevYear]).filter(item => item.trim() !== "*"))
 
         let maxNumArray = [];
         let minNumArray = [];
         let myArray = [];
+
+        //loop through the years to derive at global min and max --- scale, color and legend
         for (year = 2010; year < 2018; year++) {
             let yearChronName = "Prev_" + year;
             myArray = chronGeoJson.features.map(item => item.properties[yearChronName]).filter(item => item.trim() !== "*");
@@ -309,6 +299,7 @@ $(function () {
         const min = Math.min(...minNumArray); // return min values of all years
         const color = d3.scaleQuantize([min, max], d3.schemeBlues[9]) // define scaleQuantize color schemes -- D3
         const undefColor = "url(#diagonal-stripe-1)" // define SVG diagonal stripe for non-numerical value "*"
+
         //*******************************************************
 
         const projection = d3.geoAlbers()
@@ -324,7 +315,7 @@ $(function () {
 
         d3.select("#slider").on("input", function change() {
             let defYear = this.value;
-            
+
             let sliderYear = $("#yearTitle");
             sliderYear.html(`${defYear}`);
             sliderYear.show();
@@ -336,7 +327,7 @@ $(function () {
 
             const prevYear = "Prev_" + defYear; // name of chronic conditions (prevalence) - Naming convention: complete with year attached as suffix
             const expYear = "Exp_" + defYear; // name of chronic conditions (expenditure) - Naming convention: complete with year attached as suffix
-            console.log("prevYear updateMap", prevYear)
+
             svg.selectAll('*').remove()
 
             const chron_cond = svg.append('g')
@@ -347,7 +338,6 @@ $(function () {
                 .attr('class', 'county') // give each path element a class name of county
                 .attr("fill", d => {
                     let value = d.properties[prevYear];
-                    console.log("PrevYear in updateMap", prevYear);
                     if (value.trim() === "*") {
                         return undefColor;
                     } else {
@@ -358,7 +348,7 @@ $(function () {
 
             drawLegend(chronGeoJson, color);
             drawToolTip(chron_cond, prevYear, expYear, defYear);
-        }
+        } // end of updateMap Function
 
         const chron_cond = svg.append('g')
             .selectAll('path')
@@ -368,7 +358,6 @@ $(function () {
             .attr('class', 'county') // give each path element a class name of county
             .attr("fill", d => {
                 let value = d.properties[prevYear];
-
                 if (value.trim() === "*") {
                     return undefColor;
                 } else {
@@ -398,6 +387,44 @@ $(function () {
                     d3.select(nodes[i]).classed('hover', true).raise(); // select it, add a class name, and bring to front
                     tooltip.classed('invisible', false).html(`<h5><small>${d.properties.County} County</small></h5><h6 class="text-success"><small>${d.properties.Prev_Full} (${defYear})</small></h6><hr><p><h6><small>Prevalence: ${d.properties[prevYear]}%</small></h6><hr><h6><small>Kentucky Avg: ${d.properties["Prev_KY_" + defYear]}%</small></h6><p><small>US Avg: ${d.properties["Prev_US_" + defYear]}%</small></p>`) //make tooltip visible and update information
 
+                    // build data array object for graph here
+                    const countyKYChronData = [{
+                            Year: '2010',
+                            Prev: d.properties.Prev_2010
+                        },
+                        {
+                            Year: '2011',
+                            Prev: d.properties.Prev_2011
+                        },
+                        {
+                            Year: '2012',
+                            Prev: d.properties.Prev_2012
+                        },
+                        {
+                            Year: '2013',
+                            Prev: d.properties.Prev_2013
+                        },
+                        {
+                            Year: '2014',
+                            Prev: d.properties.Prev_2014
+                        },
+                        {
+                            Year: '2015',
+                            Prev: d.properties.Prev_2015
+                        },
+                        {
+                            Year: '2016',
+                            Prev: d.properties.Prev_2016
+                        },
+                        {
+                            Year: '2017',
+                            Prev: d.properties.Prev_2017
+                        }
+                    ];
+                    // end of data array object for graph
+                    console.log("test", countyKYChronData);
+                    drawGraph(countyKYChronData);
+
                     // mouseover panel - information
                     let chronInfo = $("#chron_name");
                     chronInfo.html(`${d.properties.Prev_Full} ${defYear}`);
@@ -410,6 +437,10 @@ $(function () {
                     let countyLabel = $("#county_label");
                     countyLabel.html(`${d.properties.County}`);
                     countyLabel.show();
+
+                    let countyGraph = $("#county_graph");
+                    countyGraph.html(`${d.properties.County}`);
+                    countyGraph.show();
 
                     let countyLabelExp = $("#county_label_exp");
                     countyLabelExp.html(`${d.properties.County}`);
@@ -447,7 +478,6 @@ $(function () {
                     let usAvgExp = $("#us_exp_avg");
                     usAvgExp.html(`${d.properties["Exp_US_" + defYear]}`);
                     usAvgExp.show();
-
 
                     let usLabel = $("#us_label");
                     usLabel.html(`US`);
@@ -567,6 +597,76 @@ $(function () {
                 tickSize: 1,
                 tickFormat: ".1f"
             }));
-    }
+    };
+
+    function drawGraph(countyKYChronData) {
+
+        const svg = d3.select("#chron_graph");
+
+        svg.selectAll("*").remove()
+
+        const padding = {
+            top: 20,
+            right: 30,
+            bottom: 30,
+            left: 40
+        };
+
+        const chartArea = {
+            "width": parseInt(svg.style("width")) - padding.left - padding.right,
+            "height": parseInt(svg.style("height")) - padding.top - padding.bottom
+        };
+
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(countyKYChronData, function (d, i) {
+                return d.Prev
+            })])
+            .range([chartArea.height, 0]).nice();
+
+        const xScale = d3.scaleBand()
+            .domain(countyKYChronData.map(function (d) {
+                return d.Year
+            }))
+            .range([0, chartArea.width])
+            .padding(.4);
+
+        // xAsix
+        const xAxis = svg.append("g")
+            .classed("xAxis", true)
+            .attr(
+                'transform', 'translate(' + padding.left + ',' + (chartArea.height + padding.top) + ')'
+            )
+            .call(d3.axisBottom(xScale));
+
+        // yAxis
+        const yAxisFn = d3.axisLeft(yScale);
+        const yAxis = svg.append("g")
+            .classed("yAxis", true)
+            .attr(
+                'transform', 'translate(' + padding.left + ',' + padding.top + ')'
+            );
+        yAxisFn(yAxis);
+
+
+        // bars
+        const rectGrp = svg.append("g").attr(
+            'transform', 'translate(' + padding.left + ',' + padding.top + ')'
+        );
+
+        rectGrp.selectAll("rect").data(countyKYChronData).enter()
+            .append("rect")
+            .attr("width", xScale.bandwidth())
+            .attr("height", function (d, i) {
+                return chartArea.height - yScale(d.Prev);
+            })
+            .attr("x", function (d, i) {
+                return xScale(d.Year);
+            })
+            .attr("y", function (d, i) {
+                return yScale(d.Prev);
+            })
+            .attr("fill", "#3d6ed6");
+
+    };
 
 });
