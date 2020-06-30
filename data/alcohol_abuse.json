@@ -28687,8 +28687,8 @@
                 ],
                 "type": "Polygon",
                 "properties": {
-                    "State": "Kentucky ",
-                    "County": "Jefferson ",
+                    "State": "Kentucky",
+                    "County": "Jefferson",
                     "Prev_2017": "2.8",
                     "Prev_US_2017": "2.5",
                     "Prev_KY_2017": "2.7",
