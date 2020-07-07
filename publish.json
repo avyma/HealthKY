@@ -1,8 +1,8 @@
 {
-    "title": "Kentucky Health - Cardiac-Related Chronic Conditions by Counties, 2017",
-    "info": "A modest attempt to visualize the cardiac health conditions by KY counties with comparison to state and national level ",
+    "title": "Chronic Conditions Across Counties (2010-2017) - Overview of Prevalence, Expenditure per Capita, and Social Vulnerability Index",
+    "info": "D3 Visualizations of 21 major chronic conditions prevalence, expenditure per capita and Counties Social Vulnerability Index",
     "coordinates": [38, -84.5],
     "author": "THE + RIGHT + VUE",
-    "link": "https://avyma.github.io/Kentucky-Health/"
+    "link": "https://avyma.github.io/HealthKY/"
 
 }
