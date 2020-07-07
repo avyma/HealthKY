@@ -268,7 +268,7 @@ $(function () {
             geometries: chronData.objects[dataSource].geometries
         });
 
-        console.log("chronGeoJson", chronGeoJson);
+        //console.log("chronGeoJson", chronGeoJson);
 
         // ********* Constants (variables) relevant for defining choropleth & legend color characteristics ************
         const prevYear = "Prev_" + defYear; // name of chronic conditions (prevalence) - Naming convention: complete with year attached as suffix
@@ -422,7 +422,7 @@ $(function () {
                         }
                     ];
                     // end of data array object for graph
-                    console.log("test", countyKYChronData);
+                    //console.log("test", countyKYChronData);
                     drawGraph(countyKYChronData);
 
                     // mouseover panel - information
@@ -451,7 +451,7 @@ $(function () {
                     prevInfo.show();
 
                     let expInfo = $("#exp_info");
-                    expInfo.html(`${(d.properties[expYear]).toLocaleString("en-US", {maximumFractionDigits:0})}`);
+                    expInfo.html(`${d.properties[expYear]}`);
                     expInfo.show();
 
                     let kyAvg = $("#ky_avg");
@@ -460,7 +460,7 @@ $(function () {
 
                     let kyAvgExp = $("#ky_exp_avg");
                     kyAvgExp.html(`${d.properties["Exp_KY_" + defYear].toLocaleString("en-US", {maximumFractionDigits:0})}`);
-                    console.log("test", typeof ["Exp_KY_" + defYear]);
+                    //console.log("test", typeof ["Exp_KY_" + defYear]);
                     kyAvgExp.show();
 
                     let kyLabel = $("#ky_label");
