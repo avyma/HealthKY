@@ -601,6 +601,8 @@ $(function () {
 
     function drawGraph(countyKYChronData) {
 
+        console.log(countyKYChronData);
+
         const svg = d3.select("#chron_graph");
 
         svg.selectAll("*").remove()
@@ -630,7 +632,7 @@ $(function () {
             .range([0, chartArea.width])
             .padding(.4);
 
-        // xAsix
+        // x-Axis
         const xAxis = svg.append("g")
             .classed("xAxis", true)
             .attr(
@@ -638,7 +640,7 @@ $(function () {
             )
             .call(d3.axisBottom(xScale));
 
-        // yAxis
+        // y-Axis
         const yAxisFn = d3.axisLeft(yScale);
         const yAxis = svg.append("g")
             .classed("yAxis", true)
