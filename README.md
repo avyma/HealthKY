@@ -1,14 +1,26 @@
 #
 
 
-# Kentucky-Health
+# HealthKY
 
 ## Overview
 
-This map project, entitled "The Vulnerability Index and 
-the Prevalence of Heart Disease" is an attempt to visualize the phenomenon of social determinants based on the CDC's Vulnerability Index on the prevalence of heart-related chronic conditions at the county level across the state of Kentucky. In addition, the project will provide visualization on the expenditure per capita for each Kentucky counties.
+This map project is broadly entitled "CHRONIC CONDITIONS - KENTUCKY (2010 - 2017)". With an underlying philosophy that data is pivotal to map design utility, this project is an attempt to significantly broaden mapping capability from the backend by incorporating and utilizing larger data sets. The data span from 2010 to 2017 across all Kentucky counties, considering major types of chronic conditions and their prevalence, expenditure per capita in combination with the social vulnerability index (SVI) as defined by the CDC. As such, the volume of data is above and beyond that which were familiar and provided throughouth other MAP673 project modules.
 
-The chronic heart conditions in this project are defined as Atrial Fibrillation (AF), Heart Failure (HF), and Ischemic Heart Disease (IHD).
+The major chronic conditions considered in this map are as follows:
+
+| Chronic Conditions  |                          |                        |
+| ------------------- | :----------------------: | ---------------------: |
+| Alcohol Abuse       | Chronic Kidney Conditions| HIV/AIDS               |
+| Alzheimer           | COPD                     | Hyperlipidemia         |
+| Asthma              | Depression               | Hypertension           |
+| Athritis            | Diabetes                 | Ischemic Heart Disease |
+| Atrial Fibrillation | Drug Abuse               | Osteoporosis           |
+| Autism              | Heart Failure            | Schizophrenia          |
+| Cancer              | Hepatitis                | Stroke                 |
+
+
+Taking advantage of the power of D3 javascript libary, this project features a dashboard-style panel complete with a bar chart of chronic conditions prevalence vs. years (2010-2017) by county.
 
 ## Objectives
 The primary objective of this map is to demonstrate the author's web mapping capability as evidenced in creative and robust application of HTML, CSS, and Javascript (Leaflet, D3, MapBox) to create this map. It is intended that the end-result will be used as a show-piece for medical professionals that are engaging in research, specifically in the area of social determinants of health. It is hope that the map will serve to spark imagination on the enormous potential of web map design and its role in the healthcare research sector.
