@@ -5,7 +5,7 @@
 
 ## Overview
 
-This map project is broadly entitled "CHRONIC CONDITIONS - KENTUCKY (2010 - 2017)". With an underlying philosophy that data is pivotal to map design utility, this project is an attempt to significantly broaden mapping capability from the backend by incorporating and utilizing larger data sets. The data span from 2010 to 2017 across all Kentucky counties, considering major types of chronic conditions and their prevalence, expenditure per capita in combination with the social vulnerability index (SVI) as defined by the CDC. As such, the volume of data is above and beyond that which were familiar and provided throughouth other MAP673 project modules.
+This map project is broadly entitled "CHRONIC CONDITIONS - KENTUCKY (2010 - 2017)". With an underlying philosophy that data is pivotal to best map design utility, this project is an attempt to significantly broaden mapping capability from the backend by incorporating and utilizing larger data sets. The data span from 2010 to 2017 across all Kentucky counties, considering major types of chronic conditions and their prevalence, expenditure per capita in combination with the social vulnerability index (SVI) as defined by the CDC. As such, the volume of data is above and beyond that which were introduced and provided throughout previous MAP673 project modules.
 
 The major chronic conditions considered in this map are as follows:
 
@@ -20,7 +20,18 @@ The major chronic conditions considered in this map are as follows:
 | Cancer              | Hepatitis                | Stroke                 |
 
 
-Taking advantage of the power of D3 javascript libary, this project features a dashboard-style panel complete with a bar chart of chronic conditions prevalence vs. years (2010-2017) by county.
+Taking advantage of the power of D3 javascript libary, this project will incorporate the following key features:
+
+- Choropleth map of Kentucky counties illustrating the prevalence of chronic conditions.
+- Navigation panel that includes dropdown menu of the chronic conditions listed above.
+- Side bar with 3 tabs:
+
+    1. Overview
+    2. Analysis - Dashboard style view that allows viewers to hav a more indepth understanding of the characteristics of the counties wit
+    3. Graph
+- Dashboard-style panel complete with a bar chart of chronic conditions prevalence vs. years (2010-2017) by county.
+
+Significant but still 
 
 ## Objectives
 The primary objective of this map is to demonstrate the author's web mapping capability as evidenced in creative and robust application of HTML, CSS, and Javascript (Leaflet, D3, MapBox) to create this map. It is intended that the end-result will be used as a show-piece for medical professionals that are engaging in research, specifically in the area of social determinants of health. It is hope that the map will serve to spark imagination on the enormous potential of web map design and its role in the healthcare research sector.
