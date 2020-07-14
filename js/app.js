@@ -211,7 +211,7 @@ $(function () {
 
         const chronTopoJson = d3.json('data/ihd.json');
 
-        const chronFile = "IHD";
+        const chronFile = "ihd";
         const chronTitle = "Ischemic Heart Disease";
 
         Promise.all([stateGeoJson, chronTopoJson]).then(data => drawMap(data, chronFile, chronTitle));
@@ -268,7 +268,7 @@ $(function () {
             geometries: chronData.objects[dataSource].geometries
         });
 
-        //console.log("chronGeoJson", chronGeoJson);
+        console.log("chronGeoJson", chronGeoJson);
 
         // ********* Constants (variables) relevant for defining choropleth & legend color characteristics ************
         const prevYear = "Prev_" + defYear; // name of chronic conditions (prevalence) - Naming convention: complete with year attached as suffix
