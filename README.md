@@ -66,8 +66,8 @@ The methods of thematic representation will be a choropleth web map of Kentucky 
 - A dropdown menu containing the chronic conditions as outlined above
 
 - User Interface: 
-    - Time slider ranges from 2010 to 2017 for chronic conditions prevalence. Initially, the time slider is created in HTML. In the future, this will be replaced with D3.js.
-    - .
+    - Time slider ranges from 2010 to 2017 for chronic conditions prevalence. At the start, the time slider will be created in HTML. In the future, the slider will be replaced with one written using D3.js.
+    - An HTML aside that features 3 tabs created using Bootstrap: 
     - The map allow selection of classifications: (i) urban; (ii) rural; and (iii) all through the use of radio-button
     - The map includes a drop-down menu for selections: (i) Prevalence; and (ii) Expenditure per capita
 
