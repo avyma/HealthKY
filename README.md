@@ -66,22 +66,18 @@ The methods of thematic representation will be a choropleth web map of Kentucky 
 - A dropdown menu containing the chronic conditions as outlined above
 
 - User Interface: 
-    - Time slider ranges from 2010 to 2017 for chronic conditions prevalence. At the start, the time slider will be created in HTML. In the future, the slider will be replaced with one written using D3.js.
-    - An HTML aside that features 3 tabs created using Bootstrap: 
-    - The map allow selection of classifications: (i) urban; (ii) rural; and (iii) all through the use of radio-button
-    - The map includes a drop-down menu for selections: (i) Prevalence; and (ii) Expenditure per capita
+    - Time slider ranges from 2010 to 2017 displaying chronic conditions prevalence for the selected years. At the start, the time slider will be created in HTML. In the future, the slider will be replaced with one written using D3.js.
+    - An HTML aside that features 3 tabs created using Bootstrap:
+        1) About - a summary and presentation of the significance of the web map initiative;
+        2) Analysis - a dashboard-style panel display using Bootstrap cards. It is interactive with the tooltip to display the prevalence, expenditure per capita and the Social Vulnerability Index of the selected county as well as the dropdown menu and the time slider; and
+        3) Graph - bar graph to illustrate the time series trend of chronic conditions and is interactive with the selection of chronic conditions from the dropdown menu and the tooltip selection of the Kentucky county.
+    
+The mapping initiative will see 
 
-The mock-ups can be found the [Wireframe Folder](../kentucky-health/Wireframes) in this repositories. The updated wireframe is shown below:
-
-![Wireframe-Module 7](Wireframes/Wireframe_Module7.jpg)
-*Wireframe-Module 7.*
-
-This mapping project is ongoing. I will continue to update this document. Meanwhile, here are the links to the videos that accompany the mindmaps:
 
 ## Technology Stack
-- QGIS will be the primary tool for data and information processing. Other tools for file conversions will be [Mapshaper](https://mapshaper.org) and [geojson.io](geojson.io).
+- QGIS and Excel will be the primary tool for data and information processing. Other tools for file conversions will be [Mapshaper](https://mapshaper.org) and [geojson.io](geojson.io).
 - The map will predominantly be drawn with d3.js taking advantage of the robust capability to asynchronous call file.
-- [MapBox Swipe GL](../Kentucky-Health/Samples/index_mapbox.html) will be used
 
 ## Appendix
 - [Affects of Social Determinants on Heart Disease](https://1drv.ms/v/s!Al_WACz_cvVTgqBElxHVA02kyjGGDA?e=WaVuZO) - Version May 25, 2020
