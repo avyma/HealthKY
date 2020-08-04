@@ -62,16 +62,12 @@ The principal medical data sources are as follows:
 
 ## Methods
 
-The anticipated methods of thematic representation will essentially be chorolpleth web map with the following characteristics:
-- 4 page tabs containing the HTML pages of maps representing each respective chronic heart conditions:
-    - Atrial Fibrillation
-    - Heart Failure
-    _ Ischemic Heart Disease
-    - Information
-(Note: This is an update from previous version on the advice of the instructor)
+The methods of thematic representation will be a choropleth web map of Kentucky by counties, built on D3.js platform. It will have the following characteristics:
+- A dropdown menu containing the chronic conditions as outlined above
+
 - User Interface: 
-    - Each page will consists of an `<aside>` for appropriate description and narratives
-    - The map will feature a swipe capability utilizing the [MapBox Swipe GL](../Kentucky-Health/Samples/index_mapbox.html). The left map visualize the Social Vulnerability Index map whereas the the right-side map will display the type of heart chronic conditions.
+    - Time slider ranges from 2010 to 2017 for chronic conditions prevalence. Initially, the time slider is created in HTML. In the future, this will be replaced with D3.js.
+    - .
     - The map allow selection of classifications: (i) urban; (ii) rural; and (iii) all through the use of radio-button
     - The map includes a drop-down menu for selections: (i) Prevalence; and (ii) Expenditure per capita
 
