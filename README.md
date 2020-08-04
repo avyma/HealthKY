@@ -31,7 +31,7 @@ Taking advantage of the power of D3 javascript libary, this project will incorpo
     3. Graph of prevalence of chronic conditions (2010-2017) by county 
 
 ## Objectives
-The primary objective of this project is to demonstrate the author's web mapping skills and UX/UI architecture capability by harnessing the power behind the integrated application of HTML, CSS, D3. Secondly, as discussed, this map is an attempt to expand mapping using larger data sets. Thirdly, by boldly selecting the just-introduced D3 javascript library (instead of the much familiar Leaflet library which was emphasized in MAP673), it is hoped that this project will enable the author to leapfrog to the next level of proficiency and understanding of the D3.js. 
+The primary objective of this project is to demonstrate the author's web mapping skills and UX/UI architecture capability by harnessing the power behind the integrated application of HTML, CSS, D3js. Secondly, as discussed, this map is an attempt to expand mapping using larger data sets. Thirdly, by boldly selecting the just-introduced D3js (instead of the much familiar Leaflet library which was emphasized in MAP673), it is hoped that this project will enable the author to leapfrog to the next level of proficiency and understanding of the D3js. 
 
 Ultimately, on a more practical level, this web mapping initiative is intended to serve as a showcase to specifically impressed upon the medical research professionals involved in the social determinants of health  - a growing area of interests - the enormous potential value of web map design.
 
@@ -66,18 +66,17 @@ The methods of thematic representation will be a choropleth web map of Kentucky 
 - A dropdown menu containing the chronic conditions as outlined above
 
 - User Interface: 
-    - Time slider ranges from 2010 to 2017 displaying chronic conditions prevalence for the selected years. At the start, the time slider will be created in HTML. In the future, the slider will be replaced with one written using D3.js.
-    - An HTML aside that features 3 tabs created using Bootstrap:
+    - Time slider ranges from 2010 to 2017 displaying chronic conditions prevalence for the selected years. At the start, the time slider will be created in HTML. In the future, the slider will be replaced with one written using D3js.
+    - An HTML aside featuring 3 tabs created using Bootstrap:
         1) About - a summary and presentation of the significance of the web map initiative;
         2) Analysis - a dashboard-style panel display using Bootstrap cards. It is interactive with the tooltip to display the prevalence, expenditure per capita and the Social Vulnerability Index of the selected county as well as the dropdown menu and the time slider; and
         3) Graph - bar graph to illustrate the time series trend of chronic conditions and is interactive with the selection of chronic conditions from the dropdown menu and the tooltip selection of the Kentucky county.
     
-The mapping initiative will see 
-
+The mapping initiative contained 3 major files: 1)index.html; 2) style.css of the css folder; and 3) app.js of the js foler. The index.html contains scripts to access the style.css and the app.js as well as other scripts accessing other key libraries namely: 1) JQuery; 2) Popper; 3) Bootstrap; 4) D3js; 5) Others. There are 21 separate topojson files each representing the chronic conditions. Within each files are time series data (2010-2017) for each Kentucky counties on prevalence, expenditure per capita, Kentucky average and US average specific to each of the years within the range. Each file also contains the data on Social Vulnerability Index.
 
 ## Technology Stack
 - QGIS and Excel will be the primary tool for data and information processing. Other tools for file conversions will be [Mapshaper](https://mapshaper.org) and [geojson.io](geojson.io).
-- The map will predominantly be drawn with d3.js taking advantage of the robust capability to asynchronous call file.
+- The map will predominantly be drawn with D3js taking advantage of the robust capability to asynchronous call file.
 
 ## Appendix
 - [Affects of Social Determinants on Heart Disease](https://1drv.ms/v/s!Al_WACz_cvVTgqBElxHVA02kyjGGDA?e=WaVuZO) - Version May 25, 2020
