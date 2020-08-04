@@ -5,7 +5,7 @@
 
 ## Overview
 
-This map project is broadly entitled "CHRONIC CONDITIONS - KENTUCKY (2010 - 2017)". With an underlying philosophy that data is pivotal to best map design utility, this project is an attempt to significantly broaden mapping capability from the backend by incorporating and utilizing larger data sets. The data span from 2010 to 2017 across all Kentucky counties, considering major types of chronic conditions and their prevalence, expenditure per capita in combination with the social vulnerability index (SVI) as defined by the CDC. As such, the volume of data is above and beyond that which were introduced and provided throughout previous MAP673 project modules.
+This map project is broadly entitled "CHRONIC CONDITIONS - KENTUCKY (2010 - 2017)". With an underlying philosophy that large data is pivotal to the best map design utility, this project is an attempt to significantly broaden mapping capability by incorporating and utilizing larger data sets. Focused on the prevalence of 21 health chronic conditions, spanning across 2010 to 2017 across all Kentucky counties, the map will feature a data panel to include information on expenditure per capita and the social vulnerability index (SVI) as defined by the CDC respective of each county. Evidently, the sheer volume of data utilized here should be above and beyond the amount that were introduced and provided during previous MAP673 project modules.
 
 The major chronic conditions considered in this map are as follows:
 
@@ -28,13 +28,12 @@ Taking advantage of the power of D3 javascript libary, this project will incorpo
 
     1. Overview
     2. Analysis - Dashboard style view that allows viewers to hav a more indepth understanding of the characteristics of the counties wit
-    3. Graph
-- Dashboard-style panel complete with a bar chart of chronic conditions prevalence vs. years (2010-2017) by county.
-
-Significant but still 
+    3. Graph of prevalence of chronic conditions (2010-2017) by county 
 
 ## Objectives
-The primary objective of this map is to demonstrate the author's web mapping capability as evidenced in creative and robust application of HTML, CSS, and Javascript (Leaflet, D3, MapBox) to create this map. It is intended that the end-result will be used as a show-piece for medical professionals that are engaging in research, specifically in the area of social determinants of health. It is hope that the map will serve to spark imagination on the enormous potential of web map design and its role in the healthcare research sector.
+The primary objective of this project is to demonstrate the author's web mapping skills and UX/UI architecture capability by harnessing the power behind the integrated application of HTML, CSS, D3. Secondly, as discussed, this map is an attempt to expand mapping using larger data sets. Thirdly, by boldly selecting the just-introduced D3 javascript library (instead of the much familiar Leaflet library which was emphasized in MAP673), it is hoped that this project will enable the author to leapfrog to the next level of proficiency and understanding of the D3.js. 
+
+Ultimately, on a more practical level, this web mapping initiative is intended to serve as a showcase to specifically impressed upon the medical research professionals involved in the social determinants of health  - a growing area of interests - the enormous potential value of web map design.
 
 ## User Requirements
 From informal conversations, it is determined that medical professionals need the following:
